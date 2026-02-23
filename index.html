@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Dev — Build with Clarity</title>
-    <meta name="description" content="Développeur créatif spécialisé en expériences digitales claires et performantes.">
+    <title>John Dev — I build digital systems that convert with clarity</title>
+    <meta name="description" content="Développeur créatif spécialisé en systèmes digitaux à fort impact. Sites web, automatisation IA et stratégie orientée croissance.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,80 +14,164 @@
         :root {
             --bg: #0a0a0b;
             --surface: rgba(255,255,255,0.03);
+            --surface-hover: rgba(255,255,255,0.06);
             --border: rgba(255,255,255,0.08);
-            --text: #fff;
+            --text: #ffffff;
             --text-secondary: rgba(255,255,255,0.6);
             --text-muted: rgba(255,255,255,0.4);
             --accent: #10b981;
             --accent-light: #34d399;
-            --accent-glow: rgba(16,185,129,0.3);
+            --accent-glow: rgba(16,185,129,0.4);
             --font: 'Space Grotesk', -apple-system, sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-        body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+        body { 
+            font-family: var(--font); 
+            background: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Animated Gradient Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(16,185,129,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(16,185,129,0.05) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(16,185,129,0.03) 0%, transparent 60%);
+            animation: gradientShift 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(2%, 2%) scale(1.05); }
+            66% { transform: translate(-1%, 1%) scale(0.98); }
+        }
 
         /* Clarity Line */
         .clarity-line {
             position: fixed; left: 30px; top: 50%; transform: translateY(-50%);
-            width: 2px; height: 150px; background: linear-gradient(180deg, transparent, var(--accent), transparent);
-            z-index: 100; opacity: 0.5;
+            width: 2px; height: 120px; 
+            background: linear-gradient(180deg, transparent, var(--accent), transparent);
+            z-index: 100; opacity: 0.6;
         }
         .clarity-line::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 30px;
-            background: var(--accent); box-shadow: 0 0 15px var(--accent-glow);
-            animation: pulse 2.5s ease-in-out infinite;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 25px;
+            background: var(--accent); 
+            box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+            animation: pulse 3s ease-in-out infinite;
         }
         @keyframes pulse {
-            0%, 100% { top: 0; opacity: 1; }
-            50% { top: 120px; opacity: 0.7; }
+            0%, 100% { top: 0; opacity: 1; box-shadow: 0 0 20px var(--accent-glow); }
+            50% { top: 95px; opacity: 0.8; box-shadow: 0 0 30px var(--accent-glow), 0 0 50px var(--accent-glow); }
         }
         @media (max-width: 768px) { .clarity-line { display: none; } }
 
         /* Nav */
         nav {
-            position: fixed; top: 0; left: 0; right: 0; padding: 1.5rem 3rem;
+            position: fixed; top: 0; left: 0; right: 0; padding: 1.5rem 4%;
             display: flex; justify-content: space-between; align-items: center; z-index: 50;
             background: linear-gradient(180deg, var(--bg) 0%, transparent 100%);
         }
         .logo { font-size: 1.1rem; font-weight: 700; color: var(--text); text-decoration: none; }
         .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { 
+            color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; 
+            font-weight: 500; transition: all 0.3s; position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--accent); transition: width 0.3s ease;
+        }
         .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
         @media (max-width: 768px) { .nav-links { display: none; } }
 
         /* Hero */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-            padding: 0 8%; max-width: 1400px; margin: 0 auto;
+            padding: 8rem 8% 4rem; max-width: 1400px; margin: 0 auto; position: relative; z-index: 1;
         }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.4rem 1rem; background: var(--surface); border: 1px solid var(--border);
+            padding: 0.5rem 1rem; background: var(--surface); border: 1px solid var(--border);
             border-radius: 100px; font-size: 0.8rem; color: var(--accent); margin-bottom: 2rem; width: fit-content;
+            animation: fadeIn 0.8s ease forwards;
         }
-        .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: blink 2s infinite; }
+        .hero-badge::before { 
+            content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; 
+            animation: blink 2s infinite; 
+        }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1.05;
+            font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 700; line-height: 1.1;
             letter-spacing: -0.03em; margin-bottom: 1.5rem;
+            animation: fadeIn 0.8s ease 0.1s forwards; opacity: 0;
         }
-        .hero h1 .accent {
+        .hero h1 .systems { color: var(--accent); }
+        .hero h1 .clarity {
             color: var(--accent); position: relative; display: inline-block;
-            text-shadow: 0 0 40px var(--accent-glow);
+            text-shadow: 0 0 60px var(--accent-glow), 0 0 120px var(--accent-glow);
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+        @keyframes glowPulse {
+            0%, 100% { text-shadow: 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow); }
+            50% { text-shadow: 0 0 60px var(--accent-glow), 0 0 120px var(--accent-glow), 0 0 180px var(--accent-glow); }
         }
 
         .hero p {
             font-size: clamp(1rem, 1.5vw, 1.25rem); color: var(--text-secondary);
-            max-width: 500px; margin-bottom: 3rem; font-weight: 300;
+            max-width: 550px; margin-bottom: 3rem; font-weight: 300;
+            animation: fadeIn 0.8s ease 0.2s forwards; opacity: 0;
         }
+
+        /* Proof Block */
+        .proof-section {
+            padding: 5rem 8%; background: linear-gradient(180deg, transparent 0%, rgba(16,185,129,0.05) 50%, transparent 100%);
+            position: relative; z-index: 1;
+        }
+        .proof-section::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.3;
+        }
+        .proof-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+            max-width: 1200px; margin: 0 auto;
+        }
+        @media (max-width: 768px) { .proof-grid { grid-template-columns: 1fr; } }
+
+        .proof-item {
+            text-align: center; padding: 2rem;
+            background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .proof-item:hover {
+            border-color: var(--accent); transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3), 0 0 30px var(--accent-glow);
+        }
+        .proof-number {
+            font-size: clamp(3rem, 6vw, 4rem); font-weight: 800; 
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            line-height: 1; margin-bottom: 0.75rem;
+        }
+        .proof-label { font-size: 1rem; color: var(--text); font-weight: 600; margin-bottom: 0.5rem; }
+        .proof-context { font-size: 0.85rem; color: var(--text-muted); }
 
         /* CTAs */
         .cta-grid {
             display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 700px;
+            animation: fadeIn 0.8s ease 0.3s forwards; opacity: 0;
         }
         @media (max-width: 768px) { .cta-grid { grid-template-columns: repeat(2, 1fr); } }
 
@@ -101,47 +185,127 @@
             border-color: var(--accent); transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 20px var(--accent-glow);
         }
-        .cta-icon { width: 40px; height: 40px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .cta-icon { 
+            width: 40px; height: 40px; background: var(--accent); border-radius: 10px; 
+            display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        .cta-item:hover .cta-icon { transform: scale(1.1) rotate(-5deg); }
         .cta-label { font-size: 0.8rem; font-weight: 600; }
         .cta-sublabel { font-size: 0.7rem; color: var(--text-muted); }
 
         /* Sections */
-        section { padding: 6rem 8%; max-width: 1400px; margin: 0 auto; }
-        .section-header { margin-bottom: 3rem; }
-        .eyebrow { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; display: block; }
+        section { padding: 6rem 8%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+        .section-header { margin-bottom: 4rem; }
+        .eyebrow { 
+            font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; 
+            color: var(--accent); margin-bottom: 0.75rem; display: block; 
+        }
         h2 { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.02em; }
 
         /* Philosophy */
+        .authority-statement {
+            font-size: 1.25rem; color: var(--text-secondary); max-width: 700px;
+            margin: -2rem 0 3rem; font-style: italic; border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+        }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
 
         .card {
-            padding: 1.75rem; background: var(--surface); border: 1px solid var(--border);
+            padding: 2rem; background: var(--surface); border: 1px solid var(--border);
             border-radius: 16px; transition: all 0.4s ease;
         }
-        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .card-num { font-size: 2.5rem; font-weight: 700; color: var(--accent); opacity: 0.3; line-height: 1; margin-bottom: 1rem; }
-        .card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .card p { color: var(--text-secondary); font-size: 0.9rem; }
+        .card:hover { 
+            border-color: var(--accent); transform: translateY(-5px);
+            background: var(--surface-hover);
+        }
+        .card-num { 
+            font-size: 2.5rem; font-weight: 800; 
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            opacity: 0.4; line-height: 1; margin-bottom: 1rem;
+        }
+        .card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
 
         /* Work */
+        .work-list { display: flex; flex-direction: column; }
         .work-item {
-            padding: 2rem 0; border-bottom: 1px solid var(--border);
-            display: grid; grid-template-columns: 80px 1fr auto; gap: 1.5rem; align-items: center;
+            padding: 2.5rem 0; border-bottom: 1px solid var(--border);
+            display: grid; grid-template-columns: 80px 1fr auto; gap: 2rem; align-items: center;
+            transition: all 0.4s ease;
         }
-        @media (max-width: 768px) { .work-item { grid-template-columns: 1fr; gap: 0.5rem; } }
-        .work-year { font-size: 0.8rem; color: var(--text-muted); }
-        .work-item h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .work-item p { color: var(--text-secondary); font-size: 0.9rem; }
-        .work-result { padding: 0.4rem 1rem; background: var(--accent); color: var(--bg); border-radius: 100px; font-size: 0.8rem; font-weight: 600; }
+        .work-item:hover { padding-left: 1.5rem; background: var(--surface); }
+        @media (max-width: 768px) { 
+            .work-item { grid-template-columns: 1fr; gap: 0.75rem; }
+            .work-item:hover { padding-left: 0.5rem; }
+        }
+        .work-year { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+        .work-item h3 { font-size: 1.35rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .work-item p { color: var(--text-secondary); font-size: 0.95rem; }
+        .work-result { 
+            padding: 0.5rem 1.25rem; background: var(--accent); color: var(--bg); 
+            border-radius: 100px; font-size: 0.85rem; font-weight: 700; white-space: nowrap;
+        }
+
+        /* Process Section */
+        .process-section { background: linear-gradient(180deg, transparent 0%, rgba(16,185,129,0.03) 50%, transparent 100%); }
+        .process-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+        }
+        @media (max-width: 900px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .process-grid { grid-template-columns: 1fr; } }
+
+        .process-step {
+            position: relative; padding: 2rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 16px;
+            transition: all 0.4s ease;
+        }
+        .process-step:hover { border-color: var(--accent); transform: translateY(-4px); }
+        .process-step::after {
+            content: '→'; position: absolute; top: 50%; right: -1.25rem;
+            transform: translateY(-50%); color: var(--text-muted); font-size: 1.25rem;
+        }
+        .process-step:last-child::after { display: none; }
+        @media (max-width: 900px) { .process-step::after { display: none; } }
+
+        .process-num {
+            width: 48px; height: 48px; background: var(--accent); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem; font-weight: 700; color: var(--bg); margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+        .process-step h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .process-step p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
 
         /* Footer */
-        footer { padding: 3rem 8%; border-top: 1px solid var(--border); text-align: center; }
+        footer { 
+            padding: 4rem 8%; border-top: 1px solid var(--border); text-align: center;
+            background: linear-gradient(180deg, transparent 0%, rgba(16,185,129,0.02) 100%);
+        }
+        .footer-tagline {
+            font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;
+            letter-spacing: 0.02em;
+        }
+        .footer-tagline strong {
+            color: var(--accent); font-weight: 600;
+        }
+        .footer-cta {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 1rem 2rem; background: var(--surface); border: 1px solid var(--border);
+            border-radius: 100px; color: var(--text); text-decoration: none;
+            font-weight: 600; margin-bottom: 2rem; transition: all 0.3s ease;
+        }
+        .footer-cta:hover {
+            border-color: var(--accent); background: var(--surface-hover);
+            transform: translateY(-2px);
+        }
         footer p { color: var(--text-muted); font-size: 0.85rem; }
         footer a { color: var(--accent); text-decoration: none; }
 
         /* Reveal */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
@@ -151,16 +315,22 @@
     <nav>
         <a href="#" class="logo">John<span>.</span></a>
         <div class="nav-links">
-            <a href="#about">Philosophie</a>
+            <a href="#proof">Résultats</a>
+            <a href="#philosophy">Philosophie</a>
             <a href="#work">Projets</a>
+            <a href="#process">Process</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-badge">Développeur Web & IA</div>
-        <h1>Build with<br><span class="accent">clarity.</span></h1>
-        <p>Je conçois des expériences digitales où chaque pixel a un sens. Pas de bruit, juste des résultats.</p>
+        <div class="hero-badge">🚀 Développeur Web & IA</div>
+        <h1>
+            I build <span class="systems">digital systems</span><br>
+            that <span class="clarity">convert</span> with clarity.
+        </h1>
+        <p>Je conçois des expériences digitales où chaque pixel a un sens. Pas de bruit, juste des résultats mesurables pour votre croissance.</p>
 
         <div class="cta-grid">
             <a href="mailto:contact@john.dev" class="cta-item">
@@ -168,83 +338,147 @@
                 <span class="cta-label">Email</span>
                 <span class="cta-sublabel">Réponse 24h</span>
             </a>
-            <a href="#" class="cta-item">
+            <a href="https://calendly.com/john" class="cta-item" target="_blank">
                 <div class="cta-icon">📅</div>
                 <span class="cta-label">RDV</span>
-                <span class="cta-sublabel">30 min</span>
+                <span class="cta-sublabel">30 min gratuites</span>
             </a>
-            <a href="#" class="cta-item">
+            <a href="https://wa.me/33000000000" class="cta-item" target="_blank">
                 <div class="cta-icon">💬</div>
                 <span class="cta-label">WhatsApp</span>
                 <span class="cta-sublabel">Rapide</span>
             </a>
-            <a href="#" class="cta-item">
+            <a href="https://github.com/john" class="cta-item" target="_blank">
                 <div class="cta-icon">⚡</div>
                 <span class="cta-label">GitHub</span>
-                <span class="cta-sublabel">Code</span>
+                <span class="cta-sublabel">Voir le code</span>
             </a>
         </div>
     </section>
 
-    <section id="about">
+    <!-- Proof Block -->
+    <section class="proof-section" id="proof">
+        <div class="proof-grid reveal">
+            <div class="proof-item">
+                <div class="proof-number">+340%</div>
+                <div class="proof-label">Trafic organique</div>
+                <div class="proof-context">Moyenne sur 6 mois</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-number">+28%</div>
+                <div class="proof-label">Conversion e-commerce</div>
+                <div class="proof-context">Paniers récupérés</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-number">-65%</div>
+                <div class="proof-label">Tickets support</div>
+                <div class="proof-context">Grâce à l'automatisation IA</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section id="philosophy">
         <div class="section-header reveal">
             <span class="eyebrow">Philosophie</span>
             <h2>Moins, mais mieux.</h2>
         </div>
 
+        <p class="authority-statement reveal">
+            "J'élimine le bruit pour ne garder que ce qui génère des résultats. Chaque ligne de code, chaque pixel, chaque interaction doit avoir un objectif business clair."
+        </p>
+
         <div class="grid-3">
             <div class="card reveal">
                 <div class="card-num">01</div>
                 <h3>Clarté avant tout</h3>
-                <p>Un message confus ne convertit pas. Je construis des sites où l'intention est immédiate.</p>
+                <p>Un message confus ne convertit pas. Je construis des systèmes où l'intention est immédiate et l'action évidente.</p>
             </div>
             <div class="card reveal">
                 <div class="card-num">02</div>
-                <h3>Performance native</h3>
-                <p>Code propre, chargement rapide, expérience fluide. Pas de plugins inutiles.</p>
+                <h3>Performance native</ch3>
+                <p>Pas de plugins inutiles. Code propre, chargement rapide, expérience fluide. La technologie au service de vos objectifs.</p>
             </div>
             <div class="card reveal">
                 <div class="card-num">03</div>
                 <h3>IA intégrée</h3>
-                <p>Automatisation intelligente là où ça compte. Chatbots, workflows, gains de temps.</p>
+                <p>Automatisation intelligente là où ça compte. Chatbots, workflows, scoring de leads — des gains de temps réels et mesurables.</p>
             </div>
         </div>
     </section>
 
+    <!-- Work -->
     <section id="work">
         <div class="section-header reveal">
-            <span class="eyebrow">Projets</span>
-            <h2>Sélection récente.</h2>
+            <span class="eyebrow">Sélection</span>
+            <h2>Projets récents.</h2>
         </div>
 
-        <div class="work-item reveal">
-            <span class="work-year">2024</span>
-            <div>
-                <h3>Artisan Premium</h3>
-                <p>Site vitrine SEO-first avec booking intégré pour menuisier.</p>
+        <div class="work-list">
+            <div class="work-item reveal">
+                <span class="work-year">2024</span>
+                <div>
+                    <h3>Artisan Premium</h3>
+                    <p>Site vitrine SEO-first avec booking intégré pour menuisier haut de gamme.</p>
+                </div>
+                <span class="work-result">+340% trafic</span>
             </div>
-            <span class="work-result">+340% trafic</span>
-        </div>
 
-        <div class="work-item reveal">
-            <span class="work-year">2024</span>
-            <div>
-                <h3>E-commerce Luxe</h3>
-                <p>Shopify sur mesure avec workflows d'automatisation IA.</p>
+            <div class="work-item reveal">
+                <span class="work-year">2024</span>
+                <div>
+                    <h3>E-commerce Luxe</h3>
+                    <p>Shopify sur mesure avec workflows d'automatisation IA et récupération de paniers.</p>
+                </div>
+                <span class="work-result">28% récupération</span>
             </div>
-            <span class="work-result">28% récupération</span>
-        </div>
 
-        <div class="work-item reveal">
-            <span class="work-year">2023</span>
-            <div>
-                <h3>SaaS B2B</h3>
-                <p>Chatbot IA avec scoring de leads et qualification automatique.</p>
+            <div class="work-item reveal">
+                <span class="work-year">2023</span>
+                <div>
+                    <h3>SaaS B2B</h3>
+                    <p>Chatbot IA avec scoring de leads, qualification automatique et intégration CRM.</p>
+                </div>
+                <span class="work-result">-65% support</span>
             </div>
-            <span class="work-result">-65% support</span>
         </div>
     </section>
 
+    <!-- Process -->
+    <section class="process-section" id="process">
+        <div class="section-header reveal">
+            <span class="eyebrow">Méthodologie</span>
+            <h2>Comment je travaille.</h2>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-step reveal">
+                <div class="process-num">01</div>
+                <h3>Audit</h3>
+                <p>Analyse de votre situation, objectifs et opportunités. Identification des quick wins.</p>
+            </div>
+
+            <div class="process-step reveal">
+                <div class="process-num">02</div>
+                <h3>Stratégie</div>
+                <p>Définition du plan d'action, choix des technologies et roadmap détaillée.</p>
+            </div>
+
+            <div class="process-step reveal">
+                <div class="process-num">03</div>
+                <h3>Développement</h3>
+                <p>Création itérative avec validations. Livraison en 2-4 semaines maximum.</p>
+            </div>
+
+            <div class="process-step reveal">
+                <div class="process-num">04</div>
+                <h3>Optimisation</h3>
+                <p>Suivi des performances, ajustements et amélioration continue post-lancement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
     <section id="contact">
         <div class="section-header reveal">
             <span class="eyebrow">Contact</span>
@@ -257,25 +491,33 @@
                 <span class="cta-label">Email</span>
                 <span class="cta-sublabel">contact@john.dev</span>
             </a>
-            <a href="#" class="cta-item">
+            <a href="https://calendly.com/john" class="cta-item" target="_blank">
                 <div class="cta-icon">📅</div>
                 <span class="cta-label">RDV</span>
                 <span class="cta-sublabel">30 min gratuites</span>
             </a>
-            <a href="#" class="cta-item">
+            <a href="https://wa.me/33000000000" class="cta-item" target="_blank">
                 <div class="cta-icon">💬</div>
                 <span class="cta-label">WhatsApp</span>
-                <span class="cta-sublabel">Direct</span>
+                <span class="cta-sublabel">Réponse rapide</span>
             </a>
-            <a href="#" class="cta-item">
+            <a href="https://github.com/john" class="cta-item" target="_blank">
                 <div class="cta-icon">⚡</div>
                 <span class="cta-label">GitHub</span>
-                <span class="cta-sublabel">Voir le code</span>
+                <span class="cta-sublabel">@john</span>
             </a>
         </div>
     </section>
 
     <footer>
+        <p class="footer-tagline">
+            <strong>Designed for performance.</strong> Engineered for growth.
+        </p>
+        
+        <a href="mailto:contact@john.dev" class="footer-cta">
+            Démarrer un projet →
+        </a>
+        
         <p>© 2025 John Dev — Build with <a href="#">clarity</a></p>
     </footer>
 
