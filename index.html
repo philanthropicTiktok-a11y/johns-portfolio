@@ -3,686 +3,534 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Dev — Je transforme votre trafic en revenus</title>
-    <meta name="description" content="Développeur spécialisé en systèmes digitaux qui génèrent du chiffre d'affaires. Sites performants, automatisation IA et stratégie orientée croissance.">
+    <title>John Dev — Je transforme le digital en résultats.</title>
+    <meta name="description" content="Développeur créatif spécialisé en expériences digitales à fort impact.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --color-bg: #000000;
-            --color-surface: rgba(28, 28, 30, 0.6);
-            --color-border: rgba(255, 255, 255, 0.08);
-            --color-border-hover: rgba(255, 255, 255, 0.15);
-            --color-text: #ffffff;
-            --color-text-secondary: rgba(255, 255, 255, 0.7);
-            --color-text-tertiary: rgba(255, 255, 255, 0.4);
-            --color-accent: #0071e3;
-            --color-accent-light: #47a1ff;
-            --gradient-accent: linear-gradient(135deg, #0071e3 0%, #47a1ff 100%);
-            --gradient-hero: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 113, 227, 0.3), transparent);
-            --font-main: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
-            --radius-sm: 12px;
-            --radius-md: 18px;
-            --radius-lg: 24px;
-            --radius-xl: 28px;
-            --transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-            --glass: rgba(255, 255, 255, 0.05);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
         
         body {
-            font-family: var(--font-main);
-            background: var(--color-bg);
-            color: var(--color-text);
-            line-height: 1.5;
-            font-weight: 400;
-            letter-spacing: -0.022em;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fafafa;
+            color: #111;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* ===== AMBIENT BACKGROUND ===== */
-        .ambient-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .ambient-bg::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(ellipse at 30% 20%, rgba(0, 113, 227, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(120, 120, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(ellipse at 50% 50%, rgba(0, 113, 227, 0.05) 0%, transparent 60%);
-            animation: ambientMove 20s ease-in-out infinite;
-        }
-
-        .ambient-glow {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(0, 113, 227, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -10%;
-            left: 50%;
-            transform: translateX(-50%);
-            filter: blur(100px);
-            animation: glowPulse 6s ease-in-out infinite;
-        }
-
-        @keyframes ambientMove {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            50% { transform: translate(2%, 2%) rotate(1deg) scale(1.02); }
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
-            50% { opacity: 0.8; transform: translateX(-50%) scale(1.1); }
-        }
-
-        /* ===== NAVIGATION ===== */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1rem 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid transparent;
-            transition: all 0.5s var(--transition-smooth);
-        }
-
-        nav.scrolled { background: rgba(0, 0, 0, 0.85); border-bottom-color: var(--color-border); }
-        nav .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.25rem; font-weight: 600; color: var(--color-text); text-decoration: none; letter-spacing: -0.02em; }
-        .nav-links { display: none; gap: 2.5rem; }
-        @media (min-width: 768px) { .nav-links { display: flex; } }
-        .nav-links a { color: var(--color-text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.3s ease; }
-        .nav-links a:hover { color: var(--color-text); }
-        .nav-cta { display: none; padding: 0.5rem 1rem; background: var(--color-accent); border-radius: 980px; color: white; text-decoration: none; font-size: 0.75rem; font-weight: 600; transition: all 0.3s var(--transition-spring); }
-        .nav-cta:hover { background: var(--color-accent-light); transform: scale(1.05); box-shadow: 0 0 20px rgba(0, 113, 227, 0.4); }
-        @media (min-width: 768px) { .nav-cta { display: inline-block; } }
-
-        /* ===== BUTTONS ===== */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-            padding: 1rem 2rem; font-size: 1rem; font-weight: 600; text-decoration: none;
-            border-radius: 980px; transition: all 0.4s var(--transition-spring); cursor: pointer; border: none;
-        }
-        .btn-primary {
-            background: var(--gradient-accent); color: white;
-            box-shadow: 0 4px 24px rgba(0, 113, 227, 0.35), 0 0 0 1px rgba(255,255,255,0.1) inset;
-        }
-        .btn-primary:hover {
-            background: var(--color-accent-light); transform: scale(1.02) translateY(-2px);
-            box-shadow: 0 8px 32px rgba(0, 113, 227, 0.5), 0 0 0 1px rgba(255,255,255,0.2) inset, 0 0 30px rgba(0, 113, 227, 0.3);
-        }
-        .btn-secondary {
-            background: var(--glass); color: var(--color-text);
-            border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);
-        }
-        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
-        .btn-group { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION - TEKIYO STYLE ===== */
         .hero {
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden;
-        }
-        .hero::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--gradient-hero); pointer-events: none;
-        }
-        .hero-content { max-width: 900px; position: relative; z-index: 1; }
-        
-        .hero-badge {
-            display: inline-block; padding: 0.5rem 1rem; background: rgba(0, 113, 227, 0.1);
-            border: 1px solid rgba(0, 113, 227, 0.3); border-radius: 980px;
-            font-size: 0.875rem; font-weight: 500; color: var(--color-accent-light);
-            margin-bottom: 1.5rem; opacity: 0; transform: translateY(30px);
-            animation: fadeUp 1s var(--transition-smooth) forwards;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1;
-            letter-spacing: -0.03em; margin-bottom: 1.5rem;
-            opacity: 0; transform: translateY(40px);
-            animation: fadeUp 1s var(--transition-smooth) 0.1s forwards;
-        }
-        
-        .hero h1 .text-glow {
-            background: linear-gradient(135deg, #0071e3 0%, #47a1ff 50%, #a78bfa 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            position: relative; display: inline-block;
-        }
-        
-        .hero h1 .text-glow::after {
-            content: 'revenus.'; position: absolute; top: 0; left: 0;
-            background: linear-gradient(135deg, #0071e3 0%, #47a1ff 50%, #a78bfa 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            filter: blur(20px); opacity: 0.5; z-index: -1;
-            animation: glowText 3s ease-in-out infinite;
-        }
-        
-        @keyframes glowText {
-            0%, 100% { opacity: 0.3; filter: blur(15px); }
-            50% { opacity: 0.6; filter: blur(25px); }
-        }
-        
-        .hero-subtitle {
-            font-size: clamp(1.125rem, 2vw, 1.5rem); color: var(--color-text-secondary);
-            max-width: 600px; margin: 0 auto 2rem; font-weight: 400; line-height: 1.6;
-            opacity: 0; transform: translateY(30px);
-            animation: fadeUp 1s var(--transition-smooth) 0.2s forwards;
-        }
-        
-        .hero-authority {
-            font-size: 0.9375rem; color: var(--color-text-tertiary);
-            margin-bottom: 2.5rem; opacity: 0; transform: translateY(30px);
-            animation: fadeUp 1s var(--transition-smooth) 0.3s forwards;
-        }
-        
-        .hero .btn-group { opacity: 0; transform: translateY(30px); animation: fadeUp 1s var(--transition-smooth) 0.4s forwards; }
-
-        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-        /* ===== PROOF SECTION (NOUVEAU) ===== */
-        .proof {
-            padding: 5rem 2rem; background: linear-gradient(180deg, transparent 0%, rgba(0,113,227,0.05) 50%, transparent 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
             position: relative;
         }
-        .proof::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0,113,227,0.3), transparent);
-        }
-        .proof-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;
-            max-width: 1000px; margin: 0 auto;
-        }
-        .proof-card {
-            text-align: center; padding: 2rem; background: var(--color-surface);
-            border: 1px solid var(--color-border); border-radius: var(--radius-xl);
-            transition: all 0.5s var(--transition-spring); position: relative; overflow: hidden;
-        }
-        .proof-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: var(--gradient-accent); opacity: 0; transition: opacity 0.3s ease;
-        }
-        .proof-card:hover {
-            transform: translateY(-8px); border-color: var(--color-border-hover);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(0,113,227,0.1);
-        }
-        .proof-card:hover::before { opacity: 1; }
-        .proof-value {
-            font-size: 3rem; font-weight: 800; background: var(--gradient-accent);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            line-height: 1; margin-bottom: 0.5rem;
-        }
-        .proof-label { font-size: 0.9375rem; color: var(--color-text-secondary); font-weight: 500; }
-        .proof-context { font-size: 0.75rem; color: var(--color-text-tertiary); margin-top: 0.5rem; }
 
-        /* ===== PROCESS SECTION (NOUVEAU) ===== */
-        .process { padding: 6rem 2rem; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
-        .section-eyebrow {
-            font-size: 0.875rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.1em; color: var(--color-accent-light); margin-bottom: 1rem; display: inline-block;
+        /* Navigation corners */
+        .nav-corner {
+            position: fixed;
+            z-index: 100;
         }
-        .section-header h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 1rem; }
-        .section-header p { font-size: 1.125rem; color: var(--color-text-secondary); }
-        
-        .process-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto;
-        }
-        @media (max-width: 900px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 500px) { .process-grid { grid-template-columns: 1fr; } }
-        
-        .process-step {
-            position: relative; padding: 2rem; background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl);
-            transition: all 0.5s var(--transition-spring);
-        }
-        .process-step:hover {
-            background: rgba(255,255,255,0.08); border-color: rgba(0,113,227,0.3);
-            transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .process-number {
-            width: 48px; height: 48px; background: var(--gradient-accent);
-            border-radius: 12px; display: flex; align-items: center; justify-content: center;
-            font-size: 1.25rem; font-weight: 700; color: white; margin-bottom: 1.5rem;
-            box-shadow: 0 4px 16px rgba(0, 113, 227, 0.4);
-        }
-        .process-step h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.75rem; }
-        .process-step p { font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.6; }
-        .process-arrow {
-            position: absolute; top: 50%; right: -1.5rem; transform: translateY(-50%);
-            color: var(--color-text-tertiary); font-size: 1.5rem;
-        }
-        @media (max-width: 900px) { .process-arrow { display: none; } }
+        .nav-corner.top-left { top: 2rem; left: 2rem; }
+        .nav-corner.top-right { top: 2rem; right: 2rem; display: flex; gap: 1rem; }
+        .nav-corner.bottom-left { bottom: 2rem; left: 2rem; }
+        .nav-corner.bottom-right { bottom: 2rem; right: 2rem; }
 
-        /* ===== PROJECTS ===== */
-        .projects { padding: 6rem 2rem; background: linear-gradient(180deg, transparent 0%, rgba(0,113,227,0.03) 50%, transparent 100%); }
-        .projects-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(3, 1fr); }
-        @media (max-width: 900px) { .projects-grid { grid-template-columns: 1fr; } }
-        
-        .project-card {
-            background: var(--color-surface); border: 1px solid var(--color-border);
-            border-radius: var(--radius-xl); padding: 2.5rem;
-            transition: all 0.5s var(--transition-spring); position: relative; overflow: hidden;
+        .nav-link {
+            width: 48px;
+            height: 48px;
+            background: #111;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: none;
+            cursor: pointer;
         }
-        .project-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(0,113,227,0.1) 0%, transparent 50%); opacity: 0;
-            transition: opacity 0.5s ease; pointer-events: none;
-        }
-        .project-card:hover {
-            transform: translateY(-8px) scale(1.02); border-color: rgba(0,113,227,0.3);
-            box-shadow: 0 32px 64px rgba(0,0,0,0.4), 0 0 40px rgba(0,113,227,0.15);
-        }
-        .project-card:hover::before { opacity: 1; }
-        .project-icon {
-            width: 56px; height: 56px; background: var(--gradient-accent);
-            border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;
-            margin-bottom: 1.5rem; font-size: 1.75rem;
-            box-shadow: 0 8px 24px rgba(0, 113, 227, 0.3);
-        }
-        .project-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
-        .project-card p { color: var(--color-text-secondary); font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1rem; }
-        .project-meta { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border); }
-        .project-result { display: flex; align-items: center; gap: 0.5rem; color: var(--color-accent-light); font-weight: 600; font-size: 0.875rem; }
 
-        /* ===== SKILLS ===== */
-        .skills { padding: 6rem 2rem; }
-        .skills-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(3, 1fr); }
-        @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
-        
-        .skill-card {
-            background: var(--glass); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: var(--radius-xl); padding: 2.5rem;
-            transition: all 0.5s var(--transition-spring);
+        .nav-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .skill-card:hover {
-            background: rgba(255,255,255,0.08); border-color: rgba(0,113,227,0.3);
-            transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(0,113,227,0.1);
+
+        .nav-link.text {
+            width: auto;
+            padding: 0 1.5rem;
+            border-radius: 24px;
+            font-size: 0.875rem;
         }
-        .skill-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-        .skill-icon {
-            width: 48px; height: 48px; background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md);
-            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+
+        .logo {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        /* Main headline with morphing effect */
+        .headline-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .headline {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            position: relative;
+        }
+
+        .headline .word {
+            display: inline-block;
+            position: relative;
+        }
+
+        .headline .word::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #0071e3, #00d4aa);
+            opacity: 0.3;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: underlineGrow 1.5s ease forwards 0.5s;
+        }
+
+        @keyframes underlineGrow {
+            to { transform: scaleX(1); }
+        }
+
+        .subheadline {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            max-width: 500px;
+        }
+
+        /* CTA Button center bottom */
+        .cta-center {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+
+        .cta-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .cta-main:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+        }
+
+        /* Footer text */
+        .footer-text {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #999;
+            z-index: 90;
+            margin-bottom: 4rem;
+        }
+
+        .footer-text a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-text a:hover { color: #111; }
+
+        /* ===== CONTENT SECTIONS (Hidden by default, shown on scroll) ===== */
+        .content-section {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 3rem;
+        }
+
+        /* Projects grid - minimal */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .project-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.4s ease;
+        }
+
+        .project-item:hover {
+            padding-left: 1rem;
+        }
+
+        .project-number {
+            font-size: 0.875rem;
+            color: #999;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .project-desc {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .project-result {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #111;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Process - numbered list */
+        .process-list {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .process-item {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .process-num {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #eee;
+            line-height: 1;
+            min-width: 80px;
+        }
+
+        .process-content h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-content p {
+            color: #666;
+            font-size: 0.9375rem;
+        }
+
+        /* Contact section */
+        .contact-section {
+            text-align: center;
+        }
+
+        .contact-email {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: #111;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .contact-email::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #0071e3, #00d4aa);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-email:hover::after {
+            transform: scaleX(1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background: #f5f5f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
-        .skill-card:hover .skill-icon { background: rgba(0,113,227,0.1); border-color: rgba(0,113,227,0.3); }
-        .skill-card h3 { font-size: 1.125rem; font-weight: 600; }
-        .skill-list { list-style: none; }
-        .skill-list li {
-            display: flex; align-items: center; gap: 0.75rem; padding: 0.625rem 0;
-            color: var(--color-text-secondary); font-size: 0.9375rem; transition: color 0.3s ease;
-        }
-        .skill-list li:hover { color: var(--color-text); }
-        .skill-list li::before { content: ''; width: 6px; height: 6px; background: var(--color-accent); border-radius: 50%; flex-shrink: 0; }
 
-        /* ===== CONTACT ===== */
-        .contact { padding: 6rem 2rem; }
-        .contact-form-wrapper { max-width: 600px; margin: 0 auto; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--color-text-secondary); }
-        .form-group input, .form-group textarea {
-            width: 100%; padding: 1rem 1.25rem; background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md);
-            color: var(--color-text); font-family: inherit; font-size: 1rem;
-            transition: all 0.3s ease; outline: none;
+        .social-link:hover {
+            background: #111;
+            color: #fff;
+            transform: translateY(-3px);
         }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: var(--color-accent); background: rgba(0,113,227,0.05);
-            box-shadow: 0 0 0 4px rgba(0,113,227,0.1), 0 0 20px rgba(0,113,227,0.2);
-        }
-        .form-group textarea { min-height: 160px; resize: vertical; }
-        
-        .contact-cta-card {
-            text-align: center; margin-top: 4rem; padding: 4rem 3rem;
-            background: linear-gradient(135deg, rgba(0,113,227,0.2) 0%, rgba(120,120,255,0.1) 100%);
-            border: 1px solid rgba(0,113,227,0.3); border-radius: var(--radius-xl);
-            position: relative; overflow: hidden;
-        }
-        .contact-cta-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.1) 0%, transparent 50%); pointer-events: none;
-        }
-        .contact-cta-card h3 { font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; position: relative; }
-        .contact-cta-card p { color: var(--color-text-secondary); margin-bottom: 2rem; font-size: 1.125rem; position: relative; }
-        .contact-cta-card .btn-secondary { background: white; color: black; border: none; position: relative; }
-        .contact-cta-card .btn-secondary:hover { background: rgba(255,255,255,0.9); transform: scale(1.02); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
-        /* ===== FOOTER ===== */
-        footer { padding: 4rem 2rem; border-top: 1px solid var(--color-border); text-align: center; }
-        .footer-links { display: flex; justify-content: center; gap: 2.5rem; margin-bottom: 2rem; }
-        .footer-links a { color: var(--color-text-tertiary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
-        .footer-links a:hover { color: var(--color-text); }
-        footer p { font-size: 0.75rem; color: var(--color-text-tertiary); }
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 6rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: #999;
+            font-size: 0.75rem;
+            animation: bounce 2s infinite;
+        }
 
-        /* ===== ANIMATIONS ===== */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s var(--transition-smooth); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .reveal-scale { opacity: 0; transform: scale(0.95); transition: all 0.8s var(--transition-spring); }
-        .reveal-scale.active { opacity: 1; transform: scale(1); }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
 
-        ::selection { background: rgba(0,113,227,0.3); color: white; }
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .nav-corner { display: none; }
+            .nav-corner.top-left { display: block; top: 1rem; left: 1rem; }
+            .cta-center { bottom: 1.5rem; }
+            .footer-text { bottom: 5rem; }
+            .scroll-indicator { display: none; }
+        }
     </style>
 </head>
 <body>
-    <div class="ambient-bg"><div class="ambient-glow"></div></div>
 
-    <nav id="nav">
-        <div class="container">
-            <a href="#" class="logo">John Dev</a>
-            <div class="nav-links">
-                <a href="#proof">Résultats</a>
-                <a href="#process">Méthode</a>
-                <a href="#projets">Projets</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <a href="#contact" class="nav-cta">Obtenir un audit gratuit</a>
-        </div>
-    </nav>
+    <!-- Navigation Corners -->
+    <div class="nav-corner top-left">
+        <a href="#" class="logo">John.</a>
+    </div>
 
+    <div class="nav-corner top-right">
+        <a href="#projects" class="nav-link text">Projets</a>
+        <a href="#process" class="nav-link text">Process</a>
+    </div>
+
+    <div class="nav-corner bottom-left">
+        <a href="mailto:contact@john.dev" class="nav-link">✉</a>
+    </div>
+
+    <div class="nav-corner bottom-right">
+        <a href="https://linkedin.com" target="_blank" class="nav-link">in</a>
+    </div>
+
+    <!-- Hero -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">🚀 Développeur Web & IA</div>
-                <h1>
-                    Je transforme votre<br>
-                    trafic en <span class="text-glow">revenus.</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Sites performants, automatisation intelligente et stratégie orientée croissance 
-                    pour entreprises ambitieuses.
-                </p>
-                <p class="hero-authority">
-                    🔥 Plus de 50 projets livrés · 100% de clients satisfaits · Expertise IA intégrée
-                </p>
-                <div class="btn-group">
-                    <a href="#contact" class="btn btn-primary">
-                        📅 Planifier une consultation
-                    </a>
-                    <a href="#proof" class="btn btn-secondary">
-                        Voir les résultats
-                    </a>
-                </div>
+        <div class="headline-container">
+            <h1 class="headline">
+                Je transforme le<br>
+                digital en <span class="word">résultats.</span>
+            </h1>
+        </div>
+        
+        <p class="subheadline">
+            Sites web performants, automatisation IA et stratégie orientée croissance 
+            pour entreprises ambitieuses.
+        </p>
+
+        <div class="scroll-indicator">
+            <span>Scrollez pour explorer</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- CTA Center -->
+    <div class="cta-center">
+        <a href="#contact" class="cta-main">
+            Démarrer un projet
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-text">
+        <a href="mailto:contact@john.dev">contact@john.dev</a>
+        <span> · </span>
+        <span>© 2025</span>
+    </div>
+
+    <!-- Projects Section -->
+    <section class="content-section" id="projects">
+        <h2 class="section-title">Projets sélectionnés.</h2>
+        
+        <div class="projects-list">
+            <div class="project-item">
+                <div class="project-number">01 — Artisan Premium</div>
+                <h3 class="project-title">Visibilité nulle à leader local</h3>
+                <p class="project-desc">Site vitrine SEO-first avec système de booking intégré. Optimisation technique et stratégie de contenu.</p>
+                <span class="project-result">+340% trafic organique</span>
+            </div>
+
+            <div class="project-item">
+                <div class="project-number">02 — E-commerce Luxe</div>
+                <h3 class="project-title">Récupération de paniers abandonnés</h3>
+                <p class="project-desc">Shopify sur mesure avec workflows d'automatisation IA et emails personnalisés.</p>
+                <span class="project-result">28% paniers récupérés</span>
+            </div>
+
+            <div class="project-item">
+                <div class="project-number">03 — SaaS B2B</div>
+                <h3 class="project-title">Support automatisé par IA</h3>
+                <p class="project-desc">Chatbot intelligent avec scoring de leads et qualification automatique des démos.</p>
+                <span class="project-result">-65% tickets support</span>
             </div>
         </div>
     </section>
 
-    <!-- SECTION PROOF (NOUVEAU) -->
-    <section class="proof" id="proof">
-        <div class="container">
-            <div class="proof-grid reveal">
-                <div class="proof-card">
-                    <div class="proof-value">+40%</div>
-                    <div class="proof-label">Trafic organique</div>
-                    <div class="proof-context">En moyenne sur 6 mois</div>
-                </div>
-                <div class="proof-card">
-                    <div class="proof-value">+30%</div>
-                    <div class="proof-label">Taux de conversion</div>
-                    <div class="proof-context">Vs. ancien site</div>
-                </div>
-                <div class="proof-card">
-                    <div class="proof-value">-60%</div>
-                    <div class="proof-label">Temps support</div>
-                    <div class="proof-context">Grâce à l'automatisation IA</div>
-                </div>
-                <div class="proof-card">
-                    <div class="proof-value">2-4s</div>
-                    <div class="proof-label">Temps de chargement</div>
-                    <div class="proof-context">Performance optimale</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION PROCESS (NOUVEAU) -->
-    <section class="process" id="process">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-eyebrow">Méthodologie</span>
-                <h2>Comment je travaille</h2>
-                <p>Un processus clair et transparent pour des résultats mesurables.</p>
-            </div>
-            
-            <div class="process-grid">
-                <div class="process-step reveal-scale">
-                    <div class="process-number">01</div>
+    <!-- Process Section -->
+    <section class="content-section" id="process">
+        <h2 class="section-title">Comment je travaille.</h2>
+        
+        <div class="process-list">
+            <div class="process-item">
+                <div class="process-num">01</div>
+                <div class="process-content">
                     <h3>Audit</h3>
-                    <p>Analyse de votre situation actuelle, de vos objectifs et de la concurrence.</p>
-                    <span class="process-arrow">→</span>
+                    <p>Analyse complète de votre situation, objectifs et concurrence. Identification des opportunités.</p>
                 </div>
-                
-                <div class="process-step reveal-scale">
-                    <div class="process-number">02</div>
+            </div>
+
+            <div class="process-item">
+                <div class="process-num">02</div>
+                <div class="process-content">
                     <h3>Stratégie</h3>
-                    <p>Définition du plan d'action, choix des technologies et roadmap.</p>
-                    <span class="process-arrow">→</span>
+                    <p>Définition du plan d'action, choix des technologies et roadmap détaillée.</p>
                 </div>
-                
-                <div class="process-step reveal-scale">
-                    <div class="process-number">03</div>
+            </div>
+
+            <div class="process-item">
+                <div class="process-num">03</div>
+                <div class="process-content">
                     <h3>Développement</h3>
-                    <p>Création rapide avec validations régulières. Livraison en 2-4 semaines.</p>
-                    <span class="process-arrow">→</span>
+                    <p>Création itérative avec validations régulières. Livraison en 2-4 semaines.</p>
                 </div>
-                
-                <div class="process-step reveal-scale">
-                    <div class="process-number">04</div>
+            </div>
+
+            <div class="process-item">
+                <div class="process-num">04</div>
+                <div class="process-content">
                     <h3>Optimisation</h3>
-                    <p>Suivi des performances, ajustements et amélioration continue.</p>
+                    <p>Suivi des performances, ajustements et amélioration continue post-lancement.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section class="projects" id="projets">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-eyebrow">Études de cas</span>
-                <h2>Résultats concrets</h2>
-                <p>Des solutions sur mesure avec des impacts mesurables.</p>
-            </div>
-            
-            <div class="projects-grid">
-                <article class="project-card reveal-scale">
-                    <div class="project-icon">🏢</div>
-                    <h3>Artisan Premium</h3>
-                    <p><strong>Problème :</strong> Visibilité nulle, aucun lead qualifié.</p>
-                    <p><strong>Solution :</strong> Site SEO-first + booking intégré.</p>
-                    <div class="project-meta">
-                        <div class="project-result">
-                            📈 +340% de trafic organique
-                        </div>
-                    </div>
-                </article>
+    <!-- Contact Section -->
+    <section class="content-section contact-section" id="contact">
+        <h2 class="section-title">Travaillons ensemble.</h2>
+        
+        <a href="mailto:contact@john.dev" class="contact-email">
+            contact@john.dev
+        </a>
+        
+        <p style="color: #666; margin-bottom: 2rem;">
+            Audit gratuit de 30 minutes. Réponse sous 24h.
+        </p>
 
-                <article class="project-card reveal-scale">
-                    <div class="project-icon">🛍️</div>
-                    <h3>E-commerce Luxe</h3>
-                    <p><strong>Problème :</strong> Abandon panier 72%, pas de relance.</p>
-                    <p><strong>Solution :</strong> Shopify + automation IA.</p>
-                    <div class="project-meta">
-                        <div class="project-result">
-                            💰 28% de paniers récupérés
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card reveal-scale">
-                    <div class="project-icon">🤖</div>
-                    <h3>SaaS B2B</h3>
-                    <p><strong>Problème :</strong> Support saturé, démos non qualifiées.</p>
-                    <p><strong>Solution :</strong> Chatbot IA + scoring leads.</p>
-                    <div class="project-meta">
-                        <div class="project-result">
-                            ⚡ -65% de tickets support
-                        </div>
-                    </div>
-                </article>
-            </div>
+        <div class="social-links">
+            <a href="#" class="social-link">Li</a>
+            <a href="#" class="social-link">Tw</a>
+            <a href="#" class="social-link">Gh</a>
         </div>
     </section>
-
-    <!-- SKILLS -->
-    <section class="skills" id="competences">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-eyebrow">Expertise</span>
-                <h2>Technologies & Compétences</h2>
-                <p>Des outils modernes au service de vos objectifs business.</p>
-            </div>
-            
-            <div class="skills-grid">
-                <div class="skill-card reveal-scale">
-                    <div class="skill-header">
-                        <div class="skill-icon">⚡</div>
-                        <h3>Développement</h3>
-                    </div>
-                    <ul class="skill-list">
-                        <li>React / Next.js 14</li>
-                        <li>TypeScript</li>
-                        <li>Tailwind CSS</li>
-                        <li>API REST & GraphQL</li>
-                        <li>Performance optimisée</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card reveal-scale">
-                    <div class="skill-header">
-                        <div class="skill-icon">🧠</div>
-                        <h3>IA & Automation</h3>
-                    </div>
-                    <ul class="skill-list">
-                        <li>Chatbots GPT-4 / Claude</li>
-                        <li>Workflows n8n / Make</li>
-                        <li>Agents autonomes</li>
-                        <li>Scraping intelligent</li>
-                        <li>Intégration API IA</li>
-                    </ul>
-                </div>
-
-                <div class="skill-card reveal-scale">
-                    <div class="skill-header">
-                        <div class="skill-icon">📈</div>
-                        <h3>Growth & SEO</h3>
-                    </div>
-                    <ul class="skill-list">
-                        <li>SEO technique avancé</li>
-                        <li>Analytics & tracking</li>
-                        <li>Conversion Rate Opt.</li>
-                        <li>CI/CD & DevOps</li>
-                        <li>Cloud (Vercel, AWS)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-eyebrow">Contact</span>
-                <h2>Discutons de votre projet</h2>
-                <p>Audit gratuit de 30 minutes. Je vous réponds sous 24h.</p>
-            </div>
-            
-            <div class="contact-form-wrapper reveal">
-                <form action="https://formspree.io/f/TON_FORM_ID" method="POST">
-                    <div class="form-group">
-                        <label for="name">Nom</label>
-                        <input type="text" id="name" name="name" placeholder="Votre nom" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="vous@entreprise.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Votre projet</label>
-                        <textarea id="message" name="message" placeholder="Décrivez votre situation actuelle et vos objectifs..." required></textarea>
-                    </div>
-                    <input type="text" name="_gotcha" style="display:none">
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        🚀 Envoyer ma demande
-                    </button>
-                </form>
-            </div>
-
-            <div class="contact-cta-card reveal">
-                <h3>Préférez un appel ?</h3>
-                <p>30 minutes pour faire le point, gratuit et sans engagement.</p>
-                <a href="https://calendly.com/TON_NOM" target="_blank" rel="noopener" class="btn btn-secondary">
-                    📅 Planifier un appel
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="#proof">Résultats</a>
-                <a href="#process">Méthode</a>
-                <a href="#projets">Projets</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <p>© 2025 John Dev. Conçu pour convertir.</p>
-        </div>
-    </footer>
 
     <script>
-        // Navbar scroll
-        const nav = document.getElementById('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        });
-
-        // Scroll reveal
-        const reveals = document.querySelectorAll('.reveal, .reveal-scale');
-        const revealOnScroll = () => {
-            reveals.forEach((el, i) => {
-                const top = el.getBoundingClientRect().top;
+        // Reveal sections on scroll
+        const sections = document.querySelectorAll('.content-section');
+        
+        const revealSection = () => {
+            sections.forEach(section => {
+                const top = section.getBoundingClientRect().top;
                 if (top < window.innerHeight - 100) {
-                    setTimeout(() => el.classList.add('active'), i * 100);
+                    section.classList.add('visible');
                 }
             });
         };
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                e.preventDefault();
-                const target = document.querySelector(a.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
+        window.addEventListener('scroll', revealSection);
+        window.addEventListener('load', revealSection);
     </script>
+
 </body>
 </html>
