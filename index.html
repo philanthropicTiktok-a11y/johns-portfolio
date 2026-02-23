@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Dev — I build digital systems that convert with clarity</title>
-    <meta name="description" content="Développeur créatif spécialisé en systèmes digitaux à fort impact. Sites web, automatisation IA et stratégie orientée croissance.">
+    <title>John Dev — Digital Systems Architect</title>
+    <meta name="description" content="Architecte digital spécialisé en systèmes performants et expériences premium.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg: #0a0a0b;
-            --surface: rgba(255,255,255,0.03);
-            --surface-hover: rgba(255,255,255,0.06);
-            --border: rgba(255,255,255,0.08);
-            --text: #ffffff;
-            --text-secondary: rgba(255,255,255,0.6);
-            --text-muted: rgba(255,255,255,0.4);
-            --accent: #10b981;
-            --accent-light: #34d399;
-            --accent-glow: rgba(16,185,129,0.4);
-            --font: 'Space Grotesk', -apple-system, sans-serif;
+            /* Apple Dark Premium Palette */
+            --bg: #0B0B0D;
+            --surface: #111113;
+            --surface-hover: #161618;
+            --border: #1C1C1F;
+            --border-subtle: rgba(255,255,255,0.06);
+            --text: #F5F5F7;
+            --text-secondary: #A1A1A6;
+            --text-muted: #6E6E73;
+            --accent: #8E8E93;
+            --accent-light: #E5E5EA;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,293 +32,272 @@
             font-family: var(--font); 
             background: var(--bg); 
             color: var(--text); 
-            line-height: 1.6;
-            position: relative;
+            line-height: 1.7;
+            font-weight: 400;
+            letter-spacing: -0.01em;
         }
 
-        /* Animated Gradient Background */
+        /* Subtle ambient light - not glow */
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
             background: 
-                radial-gradient(ellipse at 20% 30%, rgba(16,185,129,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 70%, rgba(16,185,129,0.05) 0%, transparent 40%),
-                radial-gradient(ellipse at 50% 50%, rgba(16,185,129,0.03) 0%, transparent 60%);
-            animation: gradientShift 15s ease-in-out infinite;
+                radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(255,255,255,0.02) 0%, transparent 40%);
+            animation: ambientMove 20s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
         }
-
-        @keyframes gradientShift {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(2%, 2%) scale(1.05); }
-            66% { transform: translate(-1%, 1%) scale(0.98); }
+        @keyframes ambientMove {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(1%, 1%); }
         }
 
-        /* Clarity Line */
-        .clarity-line {
-            position: fixed; left: 30px; top: 50%; transform: translateY(-50%);
-            width: 2px; height: 120px; 
-            background: linear-gradient(180deg, transparent, var(--accent), transparent);
-            z-index: 100; opacity: 0.6;
+        /* Minimal signature line */
+        .signature-line {
+            position: fixed; left: 40px; top: 50%; transform: translateY(-50%);
+            width: 1px; height: 100px; background: var(--border);
+            z-index: 100;
         }
-        .clarity-line::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 25px;
-            background: var(--accent); 
-            box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
-            animation: pulse 3s ease-in-out infinite;
+        .signature-line::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 20px;
+            background: var(--text-secondary);
+            animation: lineMove 4s ease-in-out infinite;
         }
-        @keyframes pulse {
-            0%, 100% { top: 0; opacity: 1; box-shadow: 0 0 20px var(--accent-glow); }
-            50% { top: 95px; opacity: 0.8; box-shadow: 0 0 30px var(--accent-glow), 0 0 50px var(--accent-glow); }
+        @keyframes lineMove {
+            0%, 100% { top: 0; opacity: 0.5; }
+            50% { top: 80px; opacity: 1; }
         }
-        @media (max-width: 768px) { .clarity-line { display: none; } }
+        @media (max-width: 768px) { .signature-line { display: none; } }
 
-        /* Nav */
+        /* Nav - Apple style */
         nav {
-            position: fixed; top: 0; left: 0; right: 0; padding: 1.5rem 4%;
+            position: fixed; top: 0; left: 0; right: 0; padding: 1.5rem 5%;
             display: flex; justify-content: space-between; align-items: center; z-index: 50;
             background: linear-gradient(180deg, var(--bg) 0%, transparent 100%);
         }
-        .logo { font-size: 1.1rem; font-weight: 700; color: var(--text); text-decoration: none; }
-        .logo span { color: var(--accent); }
+        .logo { 
+            font-size: 1.1rem; font-weight: 600; color: var(--text); 
+            text-decoration: none; letter-spacing: -0.02em;
+        }
         .nav-links { display: flex; gap: 2.5rem; }
         .nav-links a { 
             color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; 
-            font-weight: 500; transition: all 0.3s; position: relative;
+            font-weight: 400; transition: color 0.3s;
         }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
-            background: var(--accent); transition: width 0.3s ease;
-        }
-        .nav-links a:hover { color: var(--accent); }
-        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--text); }
         @media (max-width: 768px) { .nav-links { display: none; } }
 
-        /* Hero */
+        /* Hero - Premium spacing */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
-            padding: 8rem 8% 4rem; max-width: 1400px; margin: 0 auto; position: relative; z-index: 1;
-        }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.5rem 1rem; background: var(--surface); border: 1px solid var(--border);
-            border-radius: 100px; font-size: 0.8rem; color: var(--accent); margin-bottom: 2rem; width: fit-content;
-            animation: fadeIn 0.8s ease forwards;
-        }
-        .hero-badge::before { 
-            content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; 
-            animation: blink 2s infinite; 
-        }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 700; line-height: 1.1;
-            letter-spacing: -0.03em; margin-bottom: 1.5rem;
-            animation: fadeIn 0.8s ease 0.1s forwards; opacity: 0;
-        }
-        .hero h1 .systems { color: var(--accent); }
-        .hero h1 .clarity {
-            color: var(--accent); position: relative; display: inline-block;
-            text-shadow: 0 0 60px var(--accent-glow), 0 0 120px var(--accent-glow);
-            animation: glowPulse 3s ease-in-out infinite;
-        }
-        @keyframes glowPulse {
-            0%, 100% { text-shadow: 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow); }
-            50% { text-shadow: 0 0 60px var(--accent-glow), 0 0 120px var(--accent-glow), 0 0 180px var(--accent-glow); }
-        }
-
-        .hero p {
-            font-size: clamp(1rem, 1.5vw, 1.25rem); color: var(--text-secondary);
-            max-width: 550px; margin-bottom: 3rem; font-weight: 300;
-            animation: fadeIn 0.8s ease 0.2s forwards; opacity: 0;
-        }
-
-        /* Proof Block */
-        .proof-section {
-            padding: 5rem 8%; background: linear-gradient(180deg, transparent 0%, rgba(16,185,129,0.05) 50%, transparent 100%);
+            padding: 10rem 8% 6rem; max-width: 1200px; margin: 0 auto;
             position: relative; z-index: 1;
         }
-        .proof-section::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.3;
+        .hero-eyebrow {
+            font-size: 0.75rem; font-weight: 500; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 2rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; line-height: 1.15;
+            letter-spacing: -0.03em; margin-bottom: 2rem;
+            max-width: 900px;
+        }
+        .hero h1 .highlight {
+            color: var(--text);
+            position: relative;
+        }
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute; bottom: 0.1em; left: 0; width: 100%; height: 0.08em;
+            background: var(--accent); opacity: 0.3;
+        }
+        .hero p {
+            font-size: 1.125rem; color: var(--text-secondary);
+            max-width: 550px; margin-bottom: 4rem; font-weight: 400;
+            line-height: 1.8;
+        }
+
+        /* Premium CTAs - Text only, elegant */
+        .hero-ctas {
+            display: flex; gap: 2rem; align-items: center;
+        }
+        @media (max-width: 768px) { .hero-ctas { flex-direction: column; align-items: flex-start; gap: 1rem; } }
+
+        .cta-primary {
+            padding: 1rem 2rem; background: var(--text); color: var(--bg);
+            text-decoration: none; border-radius: 100px; font-size: 0.9rem;
+            font-weight: 500; transition: all 0.3s ease;
+        }
+        .cta-primary:hover {
+            background: var(--accent-light); transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;
+            font-weight: 400; display: flex; align-items: center; gap: 0.5rem;
+            transition: color 0.3s;
+        }
+        .cta-secondary:hover { color: var(--text); }
+        .cta-secondary::after {
+            content: '→'; transition: transform 0.3s;
+        }
+        .cta-secondary:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* Proof Section - Minimal numbers */
+        .proof-section {
+            padding: 6rem 8%; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            position: relative; z-index: 1;
         }
         .proof-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
-            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem;
+            max-width: 1000px; margin: 0 auto;
         }
-        @media (max-width: 768px) { .proof-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .proof-grid { grid-template-columns: 1fr; gap: 2rem; } }
 
-        .proof-item {
-            text-align: center; padding: 2rem;
-            background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .proof-item:hover {
-            border-color: var(--accent); transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3), 0 0 30px var(--accent-glow);
-        }
+        .proof-item { text-align: left; }
         .proof-number {
-            font-size: clamp(3rem, 6vw, 4rem); font-weight: 800; 
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            line-height: 1; margin-bottom: 0.75rem;
+            font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 600;
+            color: var(--text); line-height: 1; margin-bottom: 0.75rem;
+            letter-spacing: -0.03em;
         }
-        .proof-label { font-size: 1rem; color: var(--text); font-weight: 600; margin-bottom: 0.5rem; }
-        .proof-context { font-size: 0.85rem; color: var(--text-muted); }
-
-        /* CTAs */
-        .cta-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; max-width: 700px;
-            animation: fadeIn 0.8s ease 0.3s forwards; opacity: 0;
+        .proof-label { 
+            font-size: 0.9rem; color: var(--text-secondary); font-weight: 400;
+            line-height: 1.6;
         }
-        @media (max-width: 768px) { .cta-grid { grid-template-columns: repeat(2, 1fr); } }
-
-        .cta-item {
-            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-            padding: 1.25rem; background: var(--surface); border: 1px solid var(--border);
-            border-radius: 12px; text-decoration: none; color: var(--text);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .cta-item:hover {
-            border-color: var(--accent); transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 20px var(--accent-glow);
-        }
-        .cta-icon { 
-            width: 40px; height: 40px; background: var(--accent); border-radius: 10px; 
-            display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
-            transition: transform 0.3s ease;
-        }
-        .cta-item:hover .cta-icon { transform: scale(1.1) rotate(-5deg); }
-        .cta-label { font-size: 0.8rem; font-weight: 600; }
-        .cta-sublabel { font-size: 0.7rem; color: var(--text-muted); }
 
         /* Sections */
-        section { padding: 6rem 8%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+        section { 
+            padding: 8rem 8%; max-width: 1200px; margin: 0 auto;
+            position: relative; z-index: 1;
+        }
         .section-header { margin-bottom: 4rem; }
-        .eyebrow { 
-            font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; 
-            color: var(--accent); margin-bottom: 0.75rem; display: block; 
+        .section-eyebrow { 
+            font-size: 0.7rem; font-weight: 500; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 1rem; display: block;
         }
-        h2 { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.02em; }
+        h2 { 
+            font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 600;
+            letter-spacing: -0.02em; line-height: 1.3;
+        }
 
-        /* Philosophy */
-        .authority-statement {
-            font-size: 1.25rem; color: var(--text-secondary); max-width: 700px;
-            margin: -2rem 0 3rem; font-style: italic; border-left: 3px solid var(--accent);
-            padding-left: 1.5rem;
-        }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        /* Philosophy - Clean cards */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
 
-        .card {
-            padding: 2rem; background: var(--surface); border: 1px solid var(--border);
-            border-radius: 16px; transition: all 0.4s ease;
-        }
-        .card:hover { 
-            border-color: var(--accent); transform: translateY(-5px);
-            background: var(--surface-hover);
-        }
-        .card-num { 
-            font-size: 2.5rem; font-weight: 800; 
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            opacity: 0.4; line-height: 1; margin-bottom: 1rem;
-        }
-        .card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
-        .card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
-
-        /* Work */
-        .work-list { display: flex; flex-direction: column; }
-        .work-item {
-            padding: 2.5rem 0; border-bottom: 1px solid var(--border);
-            display: grid; grid-template-columns: 80px 1fr auto; gap: 2rem; align-items: center;
+        .philosophy-card {
+            padding: 2.5rem; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 12px;
             transition: all 0.4s ease;
         }
-        .work-item:hover { padding-left: 1.5rem; background: var(--surface); }
-        @media (max-width: 768px) { 
-            .work-item { grid-template-columns: 1fr; gap: 0.75rem; }
-            .work-item:hover { padding-left: 0.5rem; }
+        .philosophy-card:hover {
+            background: var(--surface-hover); border-color: var(--border-subtle);
         }
-        .work-year { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
-        .work-item h3 { font-size: 1.35rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .work-item p { color: var(--text-secondary); font-size: 0.95rem; }
-        .work-result { 
-            padding: 0.5rem 1.25rem; background: var(--accent); color: var(--bg); 
-            border-radius: 100px; font-size: 0.85rem; font-weight: 700; white-space: nowrap;
+        .philosophy-card h3 {
+            font-size: 1rem; font-weight: 600; margin-bottom: 1rem;
+            color: var(--text);
+        }
+        .philosophy-card p {
+            color: var(--text-secondary); font-size: 0.9rem;
+            line-height: 1.8;
         }
 
-        /* Process Section */
-        .process-section { background: linear-gradient(180deg, transparent 0%, rgba(16,185,129,0.03) 50%, transparent 100%); }
+        /* Work List - Editorial style */
+        .work-list { border-top: 1px solid var(--border); }
+        .work-item {
+            padding: 2.5rem 0; border-bottom: 1px solid var(--border);
+            display: grid; grid-template-columns: 80px 1fr auto; gap: 3rem; align-items: baseline;
+            transition: all 0.3s ease;
+        }
+        .work-item:hover { background: var(--surface); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
+        @media (max-width: 768px) { 
+            .work-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .work-item:hover { margin: 0; padding-left: 0; padding-right: 0; }
+        }
+        .work-year { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
+        .work-item h3 { font-size: 1.25rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--text); }
+        .work-item p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
+        .work-result { 
+            font-size: 0.8rem; color: var(--text); font-weight: 500;
+            padding: 0.4rem 0; border-bottom: 1px solid var(--accent);
+        }
+
+        /* Process - Minimal steps */
         .process-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+            counter-reset: step;
         }
         @media (max-width: 900px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 500px) { .process-grid { grid-template-columns: 1fr; } }
 
         .process-step {
-            position: relative; padding: 2rem; background: var(--surface);
-            border: 1px solid var(--border); border-radius: 16px;
-            transition: all 0.4s ease;
+            position: relative; padding: 2rem 0;
+            border-top: 1px solid var(--border);
         }
-        .process-step:hover { border-color: var(--accent); transform: translateY(-4px); }
-        .process-step::after {
-            content: '→'; position: absolute; top: 50%; right: -1.25rem;
-            transform: translateY(-50%); color: var(--text-muted); font-size: 1.25rem;
+        .process-step::before {
+            counter-increment: step;
+            content: '0' counter(step);
+            font-size: 0.75rem; font-weight: 500; color: var(--text-muted);
+            display: block; margin-bottom: 1.5rem;
         }
-        .process-step:last-child::after { display: none; }
-        @media (max-width: 900px) { .process-step::after { display: none; } }
+        .process-step h3 {
+            font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text);
+        }
+        .process-step p {
+            font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;
+        }
 
-        .process-num {
-            width: 48px; height: 48px; background: var(--accent); border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.25rem; font-weight: 700; color: var(--bg); margin-bottom: 1.5rem;
-            box-shadow: 0 4px 15px var(--accent-glow);
+        /* Contact Section */
+        .contact-section { text-align: center; }
+        .contact-section h2 {
+            max-width: 700px; margin: 0 auto 3rem;
         }
-        .process-step h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
-        .process-step p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        .large-cta {
+            display: inline-block;
+            padding: 1.25rem 3rem; background: var(--text); color: var(--bg);
+            text-decoration: none; border-radius: 100px; font-size: 1rem;
+            font-weight: 500; transition: all 0.3s ease; margin-bottom: 2rem;
+        }
+        .large-cta:hover {
+            background: var(--accent-light); transform: translateY(-2px);
+        }
+        .contact-links {
+            display: flex; justify-content: center; gap: 2rem;
+            margin-top: 3rem;
+        }
+        .contact-links a {
+            color: var(--text-secondary); text-decoration: none; font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+        .contact-links a:hover { color: var(--text); }
 
-        /* Footer */
+        /* Footer - Premium */
         footer { 
-            padding: 4rem 8%; border-top: 1px solid var(--border); text-align: center;
-            background: linear-gradient(180deg, transparent 0%, rgba(16,185,129,0.02) 100%);
+            padding: 4rem 8%; text-align: center; border-top: 1px solid var(--border);
         }
         .footer-tagline {
-            font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem;
-            letter-spacing: 0.02em;
+            font-size: 0.75rem; font-weight: 500; text-transform: uppercase;
+            letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 1rem;
         }
-        .footer-tagline strong {
-            color: var(--accent); font-weight: 600;
-        }
-        .footer-cta {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 1rem 2rem; background: var(--surface); border: 1px solid var(--border);
-            border-radius: 100px; color: var(--text); text-decoration: none;
-            font-weight: 600; margin-bottom: 2rem; transition: all 0.3s ease;
-        }
-        .footer-cta:hover {
-            border-color: var(--accent); background: var(--surface-hover);
-            transform: translateY(-2px);
-        }
-        footer p { color: var(--text-muted); font-size: 0.85rem; }
-        footer a { color: var(--accent); text-decoration: none; }
+        footer p { color: var(--text-secondary); font-size: 0.85rem; }
 
         /* Reveal */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <div class="clarity-line"></div>
+    <div class="signature-line"></div>
 
     <nav>
-        <a href="#" class="logo">John<span>.</span></a>
+        <a href="#" class="logo">John Dev</a>
         <div class="nav-links">
-            <a href="#proof">Résultats</a>
-            <a href="#philosophy">Philosophie</a>
             <a href="#work">Projets</a>
+            <a href="#philosophy">Approche</a>
             <a href="#process">Process</a>
             <a href="#contact">Contact</a>
         </div>
@@ -325,54 +305,39 @@
 
     <!-- Hero -->
     <section class="hero">
-        <div class="hero-badge">🚀 Développeur Web & IA</div>
+        <div class="hero-eyebrow">Digital Systems Architect</div>
+        
         <h1>
-            I build <span class="systems">digital systems</span><br>
-            that <span class="clarity">convert</span> with clarity.
+            I build <span class="highlight">digital systems</span> that<br>
+            convert with clarity.
         </h1>
-        <p>Je conçois des expériences digitales où chaque pixel a un sens. Pas de bruit, juste des résultats mesurables pour votre croissance.</p>
+        
+        <p>
+            Architecte digital spécialisé en systèmes performants. 
+            Je conçois des expériences où chaque détail a un sens, 
+            chaque interaction a un objectif.
+        </p>
 
-        <div class="cta-grid">
-            <a href="mailto:contact@john.dev" class="cta-item">
-                <div class="cta-icon">✉</div>
-                <span class="cta-label">Email</span>
-                <span class="cta-sublabel">Réponse 24h</span>
-            </a>
-            <a href="https://calendly.com/john" class="cta-item" target="_blank">
-                <div class="cta-icon">📅</div>
-                <span class="cta-label">RDV</span>
-                <span class="cta-sublabel">30 min gratuites</span>
-            </a>
-            <a href="https://wa.me/33000000000" class="cta-item" target="_blank">
-                <div class="cta-icon">💬</div>
-                <span class="cta-label">WhatsApp</span>
-                <span class="cta-sublabel">Rapide</span>
-            </a>
-            <a href="https://github.com/john" class="cta-item" target="_blank">
-                <div class="cta-icon">⚡</div>
-                <span class="cta-label">GitHub</span>
-                <span class="cta-sublabel">Voir le code</span>
-            </a>
+        <div class="hero-ctas">
+            <a href="#contact" class="cta-primary">Book a strategy call</a>
+            <a href="#work" class="cta-secondary">View selected work</a>
         </div>
     </section>
 
-    <!-- Proof Block -->
-    <section class="proof-section" id="proof">
+    <!-- Proof -->
+    <section class="proof-section">
         <div class="proof-grid reveal">
             <div class="proof-item">
-                <div class="proof-number">+340%</div>
-                <div class="proof-label">Trafic organique</div>
-                <div class="proof-context">Moyenne sur 6 mois</div>
+                <div class="proof-number">340%</div>
+                <div class="proof-label">Average organic traffic increase within 6 months</div>
             </div>
             <div class="proof-item">
-                <div class="proof-number">+28%</div>
-                <div class="proof-label">Conversion e-commerce</div>
-                <div class="proof-context">Paniers récupérés</div>
+                <div class="proof-number">28%</div>
+                <div class="proof-label">Cart recovery rate for e-commerce clients</div>
             </div>
             <div class="proof-item">
-                <div class="proof-number">-65%</div>
-                <div class="proof-label">Tickets support</div>
-                <div class="proof-context">Grâce à l'automatisation IA</div>
+                <div class="proof-number">65%</div>
+                <div class="proof-label">Reduction in support tickets through AI automation</div>
             </div>
         </div>
     </section>
@@ -380,29 +345,22 @@
     <!-- Philosophy -->
     <section id="philosophy">
         <div class="section-header reveal">
-            <span class="eyebrow">Philosophie</span>
-            <h2>Moins, mais mieux.</h2>
+            <span class="section-eyebrow">Approche</span>
+            <h2>Less, but better.</h2>
         </div>
 
-        <p class="authority-statement reveal">
-            "J'élimine le bruit pour ne garder que ce qui génère des résultats. Chaque ligne de code, chaque pixel, chaque interaction doit avoir un objectif business clair."
-        </p>
-
         <div class="grid-3">
-            <div class="card reveal">
-                <div class="card-num">01</div>
-                <h3>Clarté avant tout</h3>
-                <p>Un message confus ne convertit pas. Je construis des systèmes où l'intention est immédiate et l'action évidente.</p>
+            <div class="philosophy-card reveal">
+                <h3>Clarity First</h3>
+                <p>Every element must earn its place. I eliminate noise to keep only what drives results.</p>
             </div>
-            <div class="card reveal">
-                <div class="card-num">02</div>
-                <h3>Performance native</ch3>
-                <p>Pas de plugins inutiles. Code propre, chargement rapide, expérience fluide. La technologie au service de vos objectifs.</p>
+            <div class="philosophy-card reveal">
+                <h3>Performance by Design</h3>
+                <p>Clean code, fast loading, seamless experience. Technology as a tool, not a constraint.</p>
             </div>
-            <div class="card reveal">
-                <div class="card-num">03</div>
-                <h3>IA intégrée</h3>
-                <p>Automatisation intelligente là où ça compte. Chatbots, workflows, scoring de leads — des gains de temps réels et mesurables.</p>
+            <div class="philosophy-card reveal">
+                <h3>Intelligent Automation</h3>
+                <p>Strategic AI integration where it matters. Chatbots, workflows, lead scoring—real, measurable gains.</p>
             </div>
         </div>
     </section>
@@ -410,8 +368,8 @@
     <!-- Work -->
     <section id="work">
         <div class="section-header reveal">
-            <span class="eyebrow">Sélection</span>
-            <h2>Projets récents.</h2>
+            <span class="section-eyebrow">Selected Work</span>
+            <h2>Recent projects.</h2>
         </div>
 
         <div class="work-list">
@@ -419,25 +377,25 @@
                 <span class="work-year">2024</span>
                 <div>
                     <h3>Artisan Premium</h3>
-                    <p>Site vitrine SEO-first avec booking intégré pour menuisier haut de gamme.</p>
+                    <p>SEO-first website with integrated booking for high-end woodworking studio.</p>
                 </div>
-                <span class="work-result">+340% trafic</span>
+                <span class="work-result">+340% traffic</span>
             </div>
 
             <div class="work-item reveal">
                 <span class="work-year">2024</span>
                 <div>
-                    <h3>E-commerce Luxe</h3>
-                    <p>Shopify sur mesure avec workflows d'automatisation IA et récupération de paniers.</p>
+                    <h3>Luxe E-commerce</h3>
+                    <p>Custom Shopify with AI automation workflows and abandoned cart recovery.</p>
                 </div>
-                <span class="work-result">28% récupération</span>
+                <span class="work-result">28% recovery</span>
             </div>
 
             <div class="work-item reveal">
                 <span class="work-year">2023</span>
                 <div>
-                    <h3>SaaS B2B</h3>
-                    <p>Chatbot IA avec scoring de leads, qualification automatique et intégration CRM.</p>
+                    <h3>B2B SaaS Platform</h3>
+                    <p>AI chatbot with lead scoring, automated qualification, and CRM integration.</p>
                 </div>
                 <span class="work-result">-65% support</span>
             </div>
@@ -445,80 +403,54 @@
     </section>
 
     <!-- Process -->
-    <section class="process-section" id="process">
+    <section id="process">
         <div class="section-header reveal">
-            <span class="eyebrow">Méthodologie</span>
-            <h2>Comment je travaille.</h2>
+            <span class="section-eyebrow">Process</span>
+            <h2>How we work together.</h2>
         </div>
 
         <div class="process-grid">
             <div class="process-step reveal">
-                <div class="process-num">01</div>
-                <h3>Audit</h3>
-                <p>Analyse de votre situation, objectifs et opportunités. Identification des quick wins.</p>
+                <h3>Discovery</h3>
+                <p>Deep dive into your business, goals, and opportunities. Identifying quick wins.</p>
             </div>
 
             <div class="process-step reveal">
-                <div class="process-num">02</div>
-                <h3>Stratégie</h3>
-                <p>Plan d'action, choix tech et roadmap détaillée.</p>
+                <h3>Strategy</h3>
+                <p>Action plan, tech stack selection, and detailed roadmap aligned with your objectives.</p>
             </div>
 
             <div class="process-step reveal">
-                <div class="process-num">03</div>
-                <h3>Développement</h3>
-                <p>Création itérative avec validations. Livraison en 2-4 semaines maximum.</p>
+                <h3>Build</h3>
+                <p>Iterative development with regular checkpoints. Delivery in 2-4 weeks maximum.</p>
             </div>
 
             <div class="process-step reveal">
-                <div class="process-num">04</div>
-                <h3>Optimisation</h3>
-                <p>Suivi des performances, ajustements et amélioration continue post-lancement.</p>
+                <h3>Optimize</h3>
+                <p>Performance tracking, adjustments, and continuous improvement post-launch.</p>
             </div>
         </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact">
+    <section class="contact-section" id="contact">
         <div class="section-header reveal">
-            <span class="eyebrow">Contact</span>
-            <h2>Construisons quelque chose de clair.</h2>
+            <span class="section-eyebrow">Start a project</span>
+            <h2>Let's build something that performs.</h2>
         </div>
 
-        <div class="cta-grid reveal">
-            <a href="mailto:contact@john.dev" class="cta-item">
-                <div class="cta-icon">✉</div>
-                <span class="cta-label">Email</span>
-                <span class="cta-sublabel">contact@john.dev</span>
-            </a>
-            <a href="https://calendly.com/john" class="cta-item" target="_blank">
-                <div class="cta-icon">📅</div>
-                <span class="cta-label">RDV</span>
-                <span class="cta-sublabel">30 min gratuites</span>
-            </a>
-            <a href="https://wa.me/33000000000" class="cta-item" target="_blank">
-                <div class="cta-icon">💬</div>
-                <span class="cta-label">WhatsApp</span>
-                <span class="cta-sublabel">Réponse rapide</span>
-            </a>
-            <a href="https://github.com/john" class="cta-item" target="_blank">
-                <div class="cta-icon">⚡</div>
-                <span class="cta-label">GitHub</span>
-                <span class="cta-sublabel">@john</span>
-            </a>
+        <a href="mailto:hello@john.dev" class="large-cta reveal">Book a strategy call</a>
+
+        <div class="contact-links reveal">
+            <a href="mailto:hello@john.dev">hello@john.dev</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
         </div>
     </section>
 
     <footer>
-        <p class="footer-tagline">
-            <strong>Designed for performance.</strong> Engineered for growth.
-        </p>
-        
-        <a href="mailto:contact@john.dev" class="footer-cta">
-            Démarrer un projet →
-        </a>
-        
-        <p>© 2025 John Dev — Build with <a href="#">clarity</a></p>
+        <div class="footer-tagline">Designed for performance. Engineered for growth.</div>
+        <p>© 2025 John Dev. All rights reserved.</p>
     </footer>
 
     <script>
@@ -532,14 +464,6 @@
         };
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('load', revealOnScroll);
-
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                e.preventDefault();
-                const t = document.querySelector(a.getAttribute('href'));
-                if (t) t.scrollIntoView({ behavior: 'smooth' });
-            });
-        });
     </script>
 </body>
 </html>
