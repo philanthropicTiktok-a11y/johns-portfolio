@@ -55,22 +55,34 @@
             50% { transform: translate(1%, 1%); }
         }
 
-        /* Minimal signature line */
+        /* Animated signature element */
         .signature-line {
             position: fixed; left: 40px; top: 50%; transform: translateY(-50%);
-            width: 1px; height: 100px; background: var(--border);
-            z-index: 100;
+            width: 2px; height: 120px; 
+            background: linear-gradient(180deg, transparent, var(--border), transparent);
+            z-index: 100; opacity: 0.6;
         }
         .signature-line::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 20px;
-            background: var(--text-secondary);
-            animation: lineMove 4s ease-in-out infinite;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 30px;
+            background: linear-gradient(180deg, var(--text-secondary), var(--text));
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            animation: lineMove 3s ease-in-out infinite;
         }
         @keyframes lineMove {
-            0%, 100% { top: 0; opacity: 0.5; }
-            50% { top: 80px; opacity: 1; }
+            0%, 100% { top: 0; opacity: 0.4; }
+            50% { top: 90px; opacity: 0.8; }
         }
         @media (max-width: 768px) { .signature-line { display: none; } }
+
+        /* Subtle grain texture */
+        body::after {
+            content: '';
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
 
         /* Nav - Apple style */
         nav {
@@ -90,7 +102,7 @@
         .nav-links a:hover { color: var(--text); }
         @media (max-width: 768px) { .nav-links { display: none; } }
 
-        /* Hero - Premium spacing */
+        /* Hero - Premium spacing with animations */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
             padding: 10rem 8% 6rem; max-width: 1200px; margin: 0 auto;
@@ -99,28 +111,41 @@
         .hero-eyebrow {
             font-size: 0.75rem; font-weight: 500; text-transform: uppercase;
             letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease forwards; opacity: 0;
         }
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; line-height: 1.15;
             letter-spacing: -0.03em; margin-bottom: 2rem;
             max-width: 900px;
+            animation: fadeInUp 0.8s ease 0.1s forwards; opacity: 0;
         }
         .hero h1 .highlight {
             color: var(--text);
             position: relative;
+            display: inline-block;
         }
         .hero h1 .highlight::after {
             content: '';
             position: absolute; bottom: 0.1em; left: 0; width: 100%; height: 0.08em;
-            background: var(--accent); opacity: 0.3;
+            background: var(--text); opacity: 0.2;
+            transform: scaleX(0); transform-origin: left;
+            animation: underlineGrow 1s ease 0.5s forwards;
+        }
+        @keyframes underlineGrow {
+            to { transform: scaleX(1); }
         }
         .hero p {
             font-size: 1.125rem; color: var(--text-secondary);
             max-width: 550px; margin-bottom: 4rem; font-weight: 400;
             line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.2s forwards; opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Premium CTAs - Text only, elegant */
+        /* Premium CTAs - Text only, elegant with hover depth */
         .hero-ctas {
             display: flex; gap: 2rem; align-items: center;
         }
@@ -129,23 +154,37 @@
         .cta-primary {
             padding: 1rem 2rem; background: var(--text); color: var(--bg);
             text-decoration: none; border-radius: 100px; font-size: 0.9rem;
-            font-weight: 500; transition: all 0.3s ease;
+            font-weight: 500; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative; overflow: hidden;
+        }
+        .cta-primary::before {
+            content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0;
+            background: var(--accent-light); border-radius: 50%;
+            transform: translate(-50%, -50%); transition: all 0.5s ease;
         }
         .cta-primary:hover {
-            background: var(--accent-light); transform: translateY(-2px);
+            transform: translateY(-3px); box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .cta-primary:hover::before {
+            width: 300px; height: 300px;
+        }
+        .cta-primary span {
+            position: relative; z-index: 1;
         }
 
         .cta-secondary {
             color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;
             font-weight: 400; display: flex; align-items: center; gap: 0.5rem;
-            transition: color 0.3s;
+            transition: all 0.3s; position: relative;
         }
-        .cta-secondary:hover { color: var(--text); }
+        .cta-secondary:hover { 
+            color: var(--text); transform: translateX(5px);
+        }
         .cta-secondary::after {
             content: '→'; transition: transform 0.3s;
         }
         .cta-secondary:hover::after {
-            transform: translateX(4px);
+            transform: translateX(8px);
         }
 
         /* Proof Section - Minimal numbers */
@@ -185,45 +224,82 @@
             letter-spacing: -0.02em; line-height: 1.3;
         }
 
-        /* Philosophy - Clean cards */
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        /* Philosophy - Clean cards with hover depth */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
 
         .philosophy-card {
             padding: 2.5rem; background: var(--surface);
-            border: 1px solid var(--border); border-radius: 12px;
-            transition: all 0.4s ease;
+            border: 1px solid var(--border); border-radius: 16px;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative; overflow: hidden;
+        }
+        .philosophy-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--text-secondary), transparent);
+            opacity: 0; transition: opacity 0.3s;
         }
         .philosophy-card:hover {
-            background: var(--surface-hover); border-color: var(--border-subtle);
+            background: var(--surface-hover); 
+            border-color: var(--border-subtle);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+        .philosophy-card:hover::before {
+            opacity: 0.5;
         }
         .philosophy-card h3 {
             font-size: 1rem; font-weight: 600; margin-bottom: 1rem;
-            color: var(--text);
+            color: var(--text); transition: transform 0.3s;
+        }
+        .philosophy-card:hover h3 {
+            transform: translateX(5px);
         }
         .philosophy-card p {
             color: var(--text-secondary); font-size: 0.9rem;
-            line-height: 1.8;
+            line-height: 1.8; transition: color 0.3s;
+        }
+        .philosophy-card:hover p {
+            color: var(--text);
         }
 
-        /* Work List - Editorial style */
+        /* Work List - Editorial style with hover effects */
         .work-list { border-top: 1px solid var(--border); }
         .work-item {
             padding: 2.5rem 0; border-bottom: 1px solid var(--border);
             display: grid; grid-template-columns: 80px 1fr auto; gap: 3rem; align-items: baseline;
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
         }
-        .work-item:hover { background: var(--surface); margin: 0 -2rem; padding-left: 2rem; padding-right: 2rem; }
+        .work-item::before {
+            content: ''; position: absolute; left: -20px; top: 0; bottom: 0; width: 3px;
+            background: var(--text); transform: scaleY(0); transition: transform 0.4s ease;
+        }
+        .work-item:hover { 
+            background: var(--surface); 
+            padding-left: 2rem; padding-right: 2rem; margin: 0 -2rem;
+            transform: translateX(10px);
+        }
+        .work-item:hover::before {
+            transform: scaleY(1);
+        }
         @media (max-width: 768px) { 
             .work-item { grid-template-columns: 1fr; gap: 0.5rem; }
-            .work-item:hover { margin: 0; padding-left: 0; padding-right: 0; }
+            .work-item:hover { margin: 0; padding-left: 1rem; padding-right: 1rem; transform: translateX(5px); }
         }
-        .work-year { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; }
-        .work-item h3 { font-size: 1.25rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--text); }
-        .work-item p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; }
+        .work-year { font-size: 0.8rem; color: var(--text-muted); font-weight: 400; transition: color 0.3s; }
+        .work-item:hover .work-year { color: var(--text-secondary); }
+        .work-item h3 { font-size: 1.25rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--text); transition: transform 0.3s; }
+        .work-item:hover h3 { transform: translateX(5px); }
+        .work-item p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; transition: color 0.3s; }
+        .work-item:hover p { color: var(--text); }
         .work-result { 
             font-size: 0.8rem; color: var(--text); font-weight: 500;
             padding: 0.4rem 0; border-bottom: 1px solid var(--accent);
+            transition: all 0.3s; position: relative;
+        }
+        .work-item:hover .work-result {
+            border-color: var(--text); transform: translateX(-5px);
         }
 
         /* Process - Minimal steps */
@@ -319,7 +395,7 @@
         </p>
 
         <div class="hero-ctas">
-            <a href="#contact" class="cta-primary">Book a strategy call</a>
+            <a href="#contact" class="cta-primary"><span>Book a strategy call</span></a>
             <a href="#work" class="cta-secondary">View selected work</a>
         </div>
     </section>
