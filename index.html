@@ -3,533 +3,626 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Dev — Je transforme le digital en résultats.</title>
-    <meta name="description" content="Développeur créatif spécialisé en expériences digitales à fort impact.">
+    <title>John Dev — Build with Clarity</title>
+    <meta name="description" content="Développeur créatif spécialisé en expériences digitales claires et performantes.">
     
+    <!-- Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --color-bg: #0a0a0b;
+            --color-surface: rgba(255, 255, 255, 0.03);
+            --color-border: rgba(255, 255, 255, 0.08);
+            --color-text: #ffffff;
+            --color-text-secondary: rgba(255, 255, 255, 0.6);
+            --color-text-muted: rgba(255, 255, 255, 0.4);
+            --color-accent: #10b981;
+            --color-accent-light: #34d399;
+            --color-accent-glow: rgba(16, 185, 129, 0.3);
+            --font-main: 'Space Grotesk', -apple-system, sans-serif;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #fafafa;
-            color: #111;
-            min-height: 100vh;
+            font-family: var(--font-main);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* ===== HERO SECTION - TEKIYO STYLE ===== */
+        /* ===== SIGNATURE ANIMATION - CLARITY PULSE ===== */
+        .clarity-line {
+            position: fixed;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 200px;
+            background: linear-gradient(180deg, transparent, var(--color-accent), transparent);
+            z-index: 1000;
+            opacity: 0.6;
+        }
+
+        .clarity-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: var(--color-accent);
+            box-shadow: 0 0 20px var(--color-accent-glow), 0 0 40px var(--color-accent-glow);
+            animation: clarityPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes clarityPulse {
+            0%, 100% { 
+                top: 0; 
+                opacity: 1;
+                box-shadow: 0 0 20px var(--color-accent-glow), 0 0 40px var(--color-accent-glow);
+            }
+            50% { 
+                top: 160px; 
+                opacity: 0.8;
+                box-shadow: 0 0 30px var(--color-accent-glow), 0 0 60px var(--color-accent-glow);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .clarity-line { display: none; }
+        }
+
+        /* ===== NAVIGATION MINIMAL ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(180deg, var(--color-bg) 0%, transparent 100%);
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--color-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO ===== */
         .hero {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
+            padding: 0 10%;
             position: relative;
         }
 
-        /* Navigation corners */
-        .nav-corner {
-            position: fixed;
-            z-index: 100;
-        }
-        .nav-corner.top-left { top: 2rem; left: 2rem; }
-        .nav-corner.top-right { top: 2rem; right: 2rem; display: flex; gap: 1rem; }
-        .nav-corner.bottom-left { bottom: 2rem; left: 2rem; }
-        .nav-corner.bottom-right { bottom: 2rem; right: 2rem; }
-
-        .nav-link {
-            width: 48px;
-            height: 48px;
-            background: #111;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: none;
-            cursor: pointer;
-        }
-
-        .nav-link:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .nav-link.text {
-            width: auto;
-            padding: 0 1.5rem;
-            border-radius: 24px;
-            font-size: 0.875rem;
-        }
-
-        .logo {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #111;
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-
-        /* Main headline with morphing effect */
-        .headline-container {
-            margin-bottom: 1.5rem;
-        }
-
-        .headline {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 1.05;
-            position: relative;
-        }
-
-        .headline .word {
-            display: inline-block;
-            position: relative;
-        }
-
-        .headline .word::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(90deg, #0071e3, #00d4aa);
-            opacity: 0.3;
-            transform: scaleX(0);
-            transform-origin: left;
-            animation: underlineGrow 1.5s ease forwards 0.5s;
-        }
-
-        @keyframes underlineGrow {
-            to { transform: scaleX(1); }
-        }
-
-        .subheadline {
-            font-size: 1rem;
-            color: #666;
-            font-weight: 400;
-            margin-bottom: 3rem;
-            max-width: 500px;
-        }
-
-        /* CTA Button center bottom */
-        .cta-center {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 100;
-        }
-
-        .cta-main {
+        .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: #111;
-            color: #fff;
+            padding: 0.5rem 1rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+            width: fit-content;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .clarity {
+            color: var(--color-accent);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 .clarity::after {
+            content: 'clarity';
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: var(--color-accent);
+            filter: blur(20px);
+            opacity: 0.5;
+            animation: clarityGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes clarityGlow {
+            0%, 100% { opacity: 0.3; filter: blur(15px); }
+            50% { opacity: 0.6; filter: blur(25px); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* ===== MULTI-CHANNEL CTA ===== */
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 800px;
+        }
+
+        @media (max-width: 768px) {
+            .cta-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .cta-channel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.5rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
             text-decoration: none;
-            border-radius: 30px;
-            font-size: 0.9375rem;
-            font-weight: 600;
+            color: var(--color-text);
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
-        .cta-main:hover {
-            transform: translateX(-50%) scale(1.05);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+        .cta-channel:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px var(--color-accent-glow);
         }
 
-        /* Footer text */
-        .footer-text {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
+        .cta-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-channel:hover .cta-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .cta-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .cta-sublabel {
             font-size: 0.75rem;
-            color: #999;
-            z-index: 90;
+            color: var(--color-text-muted);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 8rem 10%;
+            position: relative;
+        }
+
+        .section-header {
             margin-bottom: 4rem;
         }
 
-        .footer-text a {
-            color: #999;
-            text-decoration: none;
-            transition: color 0.3s;
+        .section-eyebrow {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            display: inline-block;
         }
-        .footer-text a:hover { color: #111; }
 
-        /* ===== CONTENT SECTIONS (Hidden by default, shown on scroll) ===== */
-        .content-section {
-            min-height: 100vh;
-            padding: 8rem 2rem 4rem;
-            max-width: 1000px;
-            margin: 0 auto;
+        .section-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        /* ===== PHILOSOPHY ===== */
+        .philosophy {
+            background: linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.03) 50%, transparent 100%);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .philosophy-grid { grid-template-columns: 1fr; }
+        }
+
+        .philosophy-card {
+            padding: 2rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            transition: all 0.5s ease;
+        }
+
+        .philosophy-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-8px);
+        }
+
+        .philosophy-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .philosophy-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .philosophy-card p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        /* ===== WORK ===== */
+        .work-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .work-item {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--color-border);
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        .work-item:hover {
+            padding-left: 2rem;
+            background: var(--color-surface);
+        }
+
+        @media (max-width: 768px) {
+            .work-item { grid-template-columns: 1fr; gap: 1rem; }
+        }
+
+        .work-year {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+        }
+
+        .work-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-content p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .work-result {
+            padding: 0.5rem 1rem;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 4rem 10%;
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            footer { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+
+        footer p {
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        /* ===== REVEAL ANIMATION ===== */
+        .reveal {
             opacity: 0;
             transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .content-section.visible {
+        .reveal.active {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 3rem;
-        }
-
-        /* Projects grid - minimal */
-        .projects-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4rem;
-        }
-
-        .project-item {
-            padding: 2rem 0;
-            border-bottom: 1px solid #eee;
-            transition: all 0.4s ease;
-        }
-
-        .project-item:hover {
-            padding-left: 1rem;
-        }
-
-        .project-number {
-            font-size: 0.875rem;
-            color: #999;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-title {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .project-desc {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.6;
-            max-width: 600px;
-        }
-
-        .project-result {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: #111;
-            color: #fff;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        /* Process - numbered list */
-        .process-list {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .process-item {
-            display: flex;
-            gap: 2rem;
-            align-items: flex-start;
-        }
-
-        .process-num {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #eee;
-            line-height: 1;
-            min-width: 80px;
-        }
-
-        .process-content h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .process-content p {
-            color: #666;
-            font-size: 0.9375rem;
-        }
-
-        /* Contact section */
-        .contact-section {
-            text-align: center;
-        }
-
-        .contact-email {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 700;
-            color: #111;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .contact-email::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #0071e3, #00d4aa);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .contact-email:hover::after {
-            transform: scaleX(1);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 48px;
-            height: 48px;
-            background: #f5f5f5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #111;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: #111;
-            color: #fff;
-            transform: translateY(-3px);
-        }
-
-        /* ===== SCROLL INDICATOR ===== */
-        .scroll-indicator {
-            position: fixed;
-            bottom: 6rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: #999;
-            font-size: 0.75rem;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        /* ===== MOBILE ===== */
-        @media (max-width: 768px) {
-            .nav-corner { display: none; }
-            .nav-corner.top-left { display: block; top: 1rem; left: 1rem; }
-            .cta-center { bottom: 1.5rem; }
-            .footer-text { bottom: 5rem; }
-            .scroll-indicator { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Corners -->
-    <div class="nav-corner top-left">
-        <a href="#" class="logo">John.</a>
-    </div>
+    <!-- Signature Animation -->
+    <div class="clarity-line"></div>
 
-    <div class="nav-corner top-right">
-        <a href="#projects" class="nav-link text">Projets</a>
-        <a href="#process" class="nav-link text">Process</a>
-    </div>
-
-    <div class="nav-corner bottom-left">
-        <a href="mailto:contact@john.dev" class="nav-link">✉</a>
-    </div>
-
-    <div class="nav-corner bottom-right">
-        <a href="https://linkedin.com" target="_blank" class="nav-link">in</a>
-    </div>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">John<span>.</span></a>
+        <div class="nav-links">
+            <a href="#philosophy">Philosophie</a>
+            <a href="#work">Projets</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
     <!-- Hero -->
     <section class="hero">
-        <div class="headline-container">
-            <h1 class="headline">
-                Je transforme le<br>
-                digital en <span class="word">résultats.</span>
-            </h1>
-        </div>
+        <div class="hero-badge">Développeur Web & IA</div>
         
-        <p class="subheadline">
-            Sites web performants, automatisation IA et stratégie orientée croissance 
-            pour entreprises ambitieuses.
+        <h1>
+            Build with<br>
+            <span class="clarity">clarity.</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+            Je conçois des expériences digitales où chaque pixel 
+            a un sens. Pas de bruit, juste des résultats.
         </p>
 
-        <div class="scroll-indicator">
-            <span>Scrollez pour explorer</span>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M5 12l7 7 7-7"/>
-            </svg>
+        <div class="cta-grid">
+            <a href="mailto:contact@john.dev" class="cta-channel">
+                <div class="cta-icon">✉</div>
+                <span class="cta-label">Email</span>
+                <span class="cta-sublabel">Réponse 24h</span>
+            </a>
+
+            <a href="https://calendly.com/john" class="cta-channel" target="_blank">
+                <div class="cta-icon">📅</div>
+                <span class="cta-label">Calendly</span>
+                <span class="cta-sublabel">30 min gratuites</span>
+            </a>
+
+            <a href="https://wa.me/33000000000" class="cta-channel" target="_blank">
+                <div class="cta-icon">💬</div>
+                <span class="cta-label">WhatsApp</span>
+                <span class="cta-sublabel">Rapide</span>
+            </a>
+
+            <a href="https://github.com/john" class="cta-channel" target="_blank">
+                <div class="cta-icon">⚡</div>
+                <span class="cta-label">GitHub</span>
+                <span class="cta-sublabel">Voir le code</span>
+            </a>
         </div>
     </section>
 
-    <!-- CTA Center -->
-    <div class="cta-center">
-        <a href="#contact" class="cta-main">
-            Démarrer un projet
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-        </a>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer-text">
-        <a href="mailto:contact@john.dev">contact@john.dev</a>
-        <span> · </span>
-        <span>© 2025</span>
-    </div>
-
-    <!-- Projects Section -->
-    <section class="content-section" id="projects">
-        <h2 class="section-title">Projets sélectionnés.</h2>
-        
-        <div class="projects-list">
-            <div class="project-item">
-                <div class="project-number">01 — Artisan Premium</div>
-                <h3 class="project-title">Visibilité nulle à leader local</h3>
-                <p class="project-desc">Site vitrine SEO-first avec système de booking intégré. Optimisation technique et stratégie de contenu.</p>
-                <span class="project-result">+340% trafic organique</span>
-            </div>
-
-            <div class="project-item">
-                <div class="project-number">02 — E-commerce Luxe</div>
-                <h3 class="project-title">Récupération de paniers abandonnés</h3>
-                <p class="project-desc">Shopify sur mesure avec workflows d'automatisation IA et emails personnalisés.</p>
-                <span class="project-result">28% paniers récupérés</span>
-            </div>
-
-            <div class="project-item">
-                <div class="project-number">03 — SaaS B2B</div>
-                <h3 class="project-title">Support automatisé par IA</h3>
-                <p class="project-desc">Chatbot intelligent avec scoring de leads et qualification automatique des démos.</p>
-                <span class="project-result">-65% tickets support</span>
-            </div>
+    <!-- Philosophy -->
+    <section class="philosophy" id="philosophy">
+        <div class="section-header reveal">
+            <span class="section-eyebrow">Philosophie</span>
+            <h2 class="section-title">Moins, mais mieux.</h2>
         </div>
-    </section>
 
-    <!-- Process Section -->
-    <section class="content-section" id="process">
-        <h2 class="section-title">Comment je travaille.</h2>
-        
-        <div class="process-list">
-            <div class="process-item">
-                <div class="process-num">01</div>
-                <div class="process-content">
-                    <h3>Audit</h3>
-                    <p>Analyse complète de votre situation, objectifs et concurrence. Identification des opportunités.</p>
-                </div>
+        <div class="philosophy-grid">
+            <div class="philosophy-card reveal">
+                <div class="philosophy-number">01</div>
+                <h3>Clarté avant tout</h3>
+                <p>Un message confus ne convertit pas. Je construis des sites où l'intention est immédiate.</p>
             </div>
 
-            <div class="process-item">
-                <div class="process-num">02</div>
-                <div class="process-content">
-                    <h3>Stratégie</h3>
-                    <p>Définition du plan d'action, choix des technologies et roadmap détaillée.</p>
-                </div>
+            <div class="philosophy-card reveal">
+                <div class="philosophy-number">02</div>
+                <h3>Performance native</h3>
+                <p>Pas de plugins inutiles. Code propre, chargement rapide, expérience fluide.</p>
             </div>
 
-            <div class="process-item">
-                <div class="process-num">03</div>
-                <div class="process-content">
-                    <h3>Développement</h3>
-                    <p>Création itérative avec validations régulières. Livraison en 2-4 semaines.</p>
-                </div>
-            </div>
-
-            <div class="process-item">
-                <div class="process-num">04</div>
-                <div class="process-content">
-                    <h3>Optimisation</h3>
-                    <p>Suivi des performances, ajustements et amélioration continue post-lancement.</p>
-                </div>
+            <div class="philosophy-card reveal">
+                <div class="philosophy-number">03</div>
+                <h3>IA intégrée</h3>
+                <p>Automatisation intelligente là où ça compte. Chatbots, workflows, gains de temps réels.</p>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="content-section contact-section" id="contact">
-        <h2 class="section-title">Travaillons ensemble.</h2>
-        
-        <a href="mailto:contact@john.dev" class="contact-email">
-            contact@john.dev
-        </a>
-        
-        <p style="color: #666; margin-bottom: 2rem;">
-            Audit gratuit de 30 minutes. Réponse sous 24h.
-        </p>
+    <!-- Work -->
+    <section id="work">
+        <div class="section-header reveal">
+            <span class="section-eyebrow">Sélection</span>
+            <h2 class="section-title">Projets récents.</h2>
+        </div>
 
-        <div class="social-links">
-            <a href="#" class="social-link">Li</a>
-            <a href="#" class="social-link">Tw</a>
-            <a href="#" class="social-link">Gh</a>
+        <div class="work-list">
+            <div class="work-item reveal">
+                <span class="work-year">2024</span>
+                <div class="work-content">
+                    <h3>Artisan Premium</h3>
+                    <p>Site vitrine SEO-first avec booking intégré pour menuisier local.</p>
+                </div>
+                <span class="work-result">+340% trafic</span>
+            </div>
+
+            <div class="work-item reveal">
+                <span class="work-year">2024</span>
+                <div class="work-content">
+                    <h3>E-commerce Luxe</h3>
+                    <p>Shopify sur mesure avec workflows d'automatisation IA.</p>
+                </div>
+                <span class="work-result">28% récupération</span>
+            </div>
+
+            <div class="work-item reveal">
+                <span class="work-year">2023</span>
+                <div class="work-content">
+                    <h3>SaaS B2B</h3>
+                    <p>Chatbot IA avec scoring de leads et qualification automatique.</p>
+                </div>
+                <span class="work-result">-65% support</span>
+            </div>
         </div>
     </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="section-header reveal">
+            <span class="section-eyebrow">Contact</span>
+            <h2 class="section-title">Construisons quelque <br>chose de clair.</h2>
+        </div>
+
+        <div class="cta-grid reveal">
+            <a href="mailto:contact@john.dev" class="cta-channel">
+                <div class="cta-icon">✉</div>
+                <span class="cta-label">Email</span>
+                <span class="cta-sublabel">contact@john.dev</span>
+            </a>
+
+            <a href="https://calendly.com/john" class="cta-channel" target="_blank">
+                <div class="cta-icon">📅</div>
+                <span class="cta-label">RDV</span>
+                <span class="cta-sublabel">30 min gratuites</span>
+            </a>
+
+            <a href="https://wa.me/33000000000" class="cta-channel" target="_blank">
+                <div class="cta-icon">💬</div>
+                <span class="cta-label">WhatsApp</span>
+                <span class="cta-sublabel">Réponse rapide</span>
+            </a>
+
+            <a href="https://github.com/john" class="cta-channel" target="_blank">
+                <div class="cta-icon">⚡</div>
+                <span class="cta-label">GitHub</span>
+                <span class="cta-sublabel">@john</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 John Dev · Build with <a href="#">clarity</a></p>
+        <p>Disponible pour projets</p>
+    </footer>
 
     <script>
-        // Reveal sections on scroll
-        const sections = document.querySelectorAll('.content-section');
+        // Reveal animation
+        const reveals = document.querySelectorAll('.reveal');
         
-        const revealSection = () => {
-            sections.forEach(section => {
-                const top = section.getBoundingClientRect().top;
+        const revealOnScroll = () => {
+            reveals.forEach((el, i) => {
+                const top = el.getBoundingClientRect().top;
                 if (top < window.innerHeight - 100) {
-                    section.classList.add('visible');
+                    setTimeout(() => el.classList.add('active'), i * 100);
                 }
             });
         };
 
-        window.addEventListener('scroll', revealSection);
-        window.addEventListener('load', revealSection);
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
     </script>
 
 </body>
